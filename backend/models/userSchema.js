@@ -8,7 +8,7 @@ const userSchema = new mongoose.Schema({
     password: { type: String, required: true },
     contact: { type: Number },
     location:{type:String},
-    role:{type:mongoose.Schema.Types.ObjectId, ref:"Role"}
+    role:{type: mongoose.Schema.Types.ObjectId, ref: "Role"}
 });
 
 userSchema.pre("save", async function () {

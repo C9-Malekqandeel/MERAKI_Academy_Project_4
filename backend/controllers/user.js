@@ -31,7 +31,7 @@ const login=(req,res)=>{
     const password = req.body.password;
     const email = req.body.email.toLowerCase();
 
-    UserModel.findOne({email}).populate("role").then(async (result)=>{
+    UserModel.findOne({email}).populate("role").exec().then(async (result)=>{
         if(!result){
             return res.status(403).json({
                 success:false,

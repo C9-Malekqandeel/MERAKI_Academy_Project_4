@@ -11,12 +11,12 @@ app.use(express.json());
 //const itemRoutes = require("./routes/item");
 //const orderRoutes = require("./routes/order");
 const roleRoutes = require("./routes/role");
-//const userRoutes = require ("./routes/role");
+const userRoutes = require ("./routes/user");
 
 //app.use("/item",itemRoutes);
 //app.use("/order",orderRoutes);
 app.use("/roles",roleRoutes);
-//app.use("/users",userRoutes);
+app.use("/users",userRoutes);
 
 
 // Handles any other endpoints [unassigned - endpoints]
