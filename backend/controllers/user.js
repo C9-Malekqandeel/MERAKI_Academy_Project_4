@@ -1,4 +1,8 @@
 const UserModel = require("../models/userSchema");
+const bcrypt = require("bcryptjs");
+const jwt = require("jsonwebtoken");
+
+
 
 const register = (req, res)=>{
     const {userName, email, password, contact , location, role}= req.body;
@@ -24,10 +28,58 @@ const register = (req, res)=>{
 }
 
 const login=(req,res)=>{
-    const 
+    const password = req.body.password;
+    const email = req.body.email.toLowerCase();
+
+    UserModel.findOne({email}).populate("role").then(async (result)=>{
+        if(!result){
+            return res.status(403).json({
+                success:false,
+                message:`The email doesn't exist`,
+            })
+        }
+        try{
+            const valid = await bcrypt.compare(password,result.password);
+
+            if(!valid){
+                return res.status(403).json({
+                    success:false,
+                    message:"The password you have entered is incorrect"
+                })
+            }
+
+            const payload = {
+                userId:result._id,
+                userName:result.userName,
+                role:result.role,
+                contact:result.contact
+            }
+
+            const options = {
+                expiresIn:"120m"
+            }
+
+            const token = jwt.sign( payload,process.env.SECRET,options)
+
+            res.status(200).json({
+                success:true,
+                message:"Logged In Successfully",
+                token:token
+            });
+        } catch (error){
+            throw new Error (error.message)
+        }
+    }).catch((err)=>{
+        res.status(500).json({
+            success: false,
+            message: `Server Error`,
+            err: err.message,
+        })
+    })
+
 }
 
 module.exports={
     register,
-
+    login
 }
