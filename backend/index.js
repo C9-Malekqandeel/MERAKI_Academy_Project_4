@@ -8,13 +8,13 @@ const PORT = process.env.PORT;
 app.use(cors());
 app.use(express.json());
 
-//const itemRoutes = require("./routes/item");
+const itemRoutes = require("./routes/item");
 //const orderRoutes = require("./routes/order");
 const roleRoutes = require("./routes/role");
 const userRoutes = require ("./routes/user");
 const categoryRoutes = require("./routes/category")
 
-//app.use("/item",itemRoutes);
+app.use("/items",itemRoutes);
 //app.use("/order",orderRoutes);
 app.use("/roles",roleRoutes);
 app.use("/users",userRoutes);

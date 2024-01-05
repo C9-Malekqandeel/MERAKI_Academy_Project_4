@@ -65,6 +65,11 @@ const getCategoryByName = (req,res)=>{
     })
 
 
+};
+
+const getCategoryByUser = (req,res)=>{
+    const user = req.token.userId;
+    
 }
 
 
