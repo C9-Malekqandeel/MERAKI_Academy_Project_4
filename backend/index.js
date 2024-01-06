@@ -9,13 +9,13 @@ app.use(cors());
 app.use(express.json());
 
 const itemRoutes = require("./routes/item");
-//const orderRoutes = require("./routes/order");
+const orderRoutes = require("./routes/order");
 const roleRoutes = require("./routes/role");
 const userRoutes = require ("./routes/user");
 const categoryRoutes = require("./routes/category")
 
 app.use("/items",itemRoutes);
-//app.use("/order",orderRoutes);
+app.use("/orders",orderRoutes);
 app.use("/roles",roleRoutes);
 app.use("/users",userRoutes);
 app.use("/category", categoryRoutes);

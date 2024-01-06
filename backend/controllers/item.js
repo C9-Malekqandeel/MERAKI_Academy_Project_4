@@ -1,8 +1,7 @@
 const ItemModel = require("../models/itemsSchema");
 
 const createItemByUser = (req,res)=>{
-    const userId = req.token.userId;
-    const user = req.params.id
+    const user = req.token.userId;
 
     const {name,image,description,price,category} = req.body;
 
@@ -16,7 +15,7 @@ const createItemByUser = (req,res)=>{
             success:true,
             message:"Item was posted",
             item:result,
-            user:userId
+            user:user
         })
     }).catch((err)=>{
         res.status(500).json({
@@ -97,20 +96,51 @@ const getAllItemRandom = (req,res)=>{
     })
 }
 
-const getItemByName=(req,res)=>{
+const getItemsByName=(req,res)=>{
+    const name = req.params.name;
 
-
+    ItemModel.find({name:name}).then((result)=>{
+        res.status(200).json({
+            success:true,
+            message:`item ${name}`,
+            item:result
+        })
+    }).catch((err)=>{
+        res.status(500).json({
+            success:false,
+            message:"Server Error",
+            err:err.message
+        })
+    })
 }
 
 const getItemByUser =(req,res)=>{
+    const id = req.params.id;
+
+    ItemModel.find({user:id}).then((result)=>{
+        res.status(200).json({
+            success:true,
+            message:`items`,
+            item:result
+        })
+    }).catch((err)=>{
+        res.status(500).json({
+            success:false,
+            message:"Server Error",
+            err:err.message
+        })
+    })
 
 }
-
+// On Dashboard's User will be related to token directly but the home page will be related to params.
+//! will be order using every functions here then delete and update.
 
 module.exports={
     createItemByUser,
     updateItemByUser,
     deleteItemByUser,
     getAllItemRandom,
-    
+    getItemsByName,
+    getItemByUser
+
 }

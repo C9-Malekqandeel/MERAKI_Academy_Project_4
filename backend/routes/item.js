@@ -1,5 +1,5 @@
 const express = require('express');
-const {createItemByUser,updateItemByUser, deleteItemByUser, getAllItemRandom} = require("../controllers/item");
+const {createItemByUser,updateItemByUser, deleteItemByUser, getAllItemRandom, getItemsByName, getItemByUser} = require("../controllers/item");
 
 const authentication = require('../middleware/authentication')
 const authorization = require('../middleware/authorization')
@@ -13,6 +13,9 @@ itemRouter.put('/update/:id',authentication,authorization("UPDATE"),updateItemBy
 itemRouter.delete('/delete/:id',authentication,authorization("DELETE"),deleteItemByUser);
 
 itemRouter.get('/random',getAllItemRandom);
+itemRouter.get('/:name',getItemsByName);
+itemRouter.get('/id',getItemByUser)
+
 
 
 
