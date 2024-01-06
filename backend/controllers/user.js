@@ -64,7 +64,8 @@ const login=(req,res)=>{
             res.status(200).json({
                 success:true,
                 message:"Logged In Successfully",
-                token:token
+                token:token,
+                user:result
             });
         } catch (error){
             throw new Error (error.message)

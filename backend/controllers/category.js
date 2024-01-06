@@ -69,13 +69,53 @@ const getCategoryByName = (req,res)=>{
 
 const getCategoryByUser = (req,res)=>{
     const user = req.token.userId;
-    
+
+    ItemsModel.findMany(user).then((result)=>{
+        if(!result){
+            return res.status(404).json({
+                success:false,
+                message:"The category not found"
+            })
+        }
+        res.status(200).json({
+            success:true,
+            message:`category ${user}`,
+            category:result
+
+        }).catch((err) => {
+            res.status(500).json({
+                success: false,
+                message: `Server Error`,
+                err: err.message,
+            });
+        });
+    })
+
 }
 
+// Get category for all item on the same user /:idUser after click
+const getAllCategoryForUser=(req,res)=>{
+    const id = req.params.id;
+    const name= req.token.userName;
+    CategoryModel.findMany(name).json({
+        success:true,
+        message:`category ${name}`,
+        category:result
 
+    }).catch((err) => {
+        res.status(500).json({
+            success: false,
+            message: `Server Error`,
+            err: err.message,
+        });
+    });
+
+}
 
 module.exports = {
     createCategory,
     getAllCategory,
     getCategoryByName,
+    getCategoryByUser,
+    getAllCategoryForUser
 }

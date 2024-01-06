@@ -1,6 +1,7 @@
 const jwt = require("jsonwebtoken");
 
-const authentication = (req,res)=>{
+const authentication = (req,res, next)=>{
+  console.log(req.headers.authorization.split(" "));
   try{
     if(!req.headers.authorization){
      return  res.status(403).json({
@@ -8,9 +9,9 @@ const authentication = (req,res)=>{
       message:'Forbidden'
      })
     }
-    const token = req.headers.authorization.spilt(" ").pop();
+    const token = req.headers.authorization.split(" ").pop();
 
-    jwt.verify(token, process.env.SECRET,(req,res)=>{
+    jwt.verify(token, process.env.SECRET,(err,result)=>{
       if (err) {
         res.status(403).json({
           success: false,
