@@ -134,6 +134,7 @@ const getItemByUser =(req,res)=>{
 }
 // On Dashboard's User will be related to token directly but the home page will be related to params.
 //! will be order using every functions here then delete and update.
+// get items by category name
 
 module.exports={
     createItemByUser,

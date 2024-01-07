@@ -41,36 +41,37 @@ const getAllCategory = (req,res)=>{
 };
 
 const getCategoryByName = (req,res)=>{
-    let name = req.params.name;
+    let idName = req.params.name;
+    console.log(idName);
 
-    ItemsModel.findOne(name).populate("Category").exec().then((result)=>{
+    ItemsModel.find({category :idName}).populate('category').then((result)=>{
         if(!result){
             return res.status(404).json({
                 success:false,
                 message:"The category not found"
             })
         }
+        console.log(result);
         res.status(200).json({
             success:true,
-            message:`category ${name}`,
-            category:result
+            message:`category`,
+            ItemOfCategory:result
 
-        }).catch((err) => {
-            res.status(500).json({
-                success: false,
-                message: `Server Error`,
-                err: err.message,
-            });
+        })
+    }).catch((err) => {
+        res.status(500).json({
+            success: false,
+            message: `Server Error`,
+            err: err.message,
         });
-    })
-
-
+    });
 };
 
 const getCategoryByUser = (req,res)=>{
     const user = req.token.userId;
+    console.log(user);
 
-    ItemsModel.findMany(user).then((result)=>{
+    ItemsModel.find({_id:user}).then((result)=>{
         if(!result){
             return res.status(404).json({
                 success:false,
