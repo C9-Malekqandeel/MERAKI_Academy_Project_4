@@ -36,7 +36,7 @@ const updateOrderForCheckout = (req,res)=>{
     const checkout = req.body.checkout;
     const orderId = req.params.id;
 
-    orderModel.findByIdAndUpdate({_id: orderId },{checkout},{new:true}).then((result)=>{
+    orderModel.findByIdAndUpdate({_id: orderId },{checkout},{new:true}).populate("item").then((result)=>{
         res.status(200).json({
             success:true,
             message:"Order is ready to checkout",

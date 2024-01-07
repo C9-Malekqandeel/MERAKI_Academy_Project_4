@@ -14,8 +14,9 @@ itemRouter.delete('/delete/:id',authentication,authorization("DELETE"),deleteIte
 
 itemRouter.get('/random',getAllItemRandom);
 
-itemRouter.get('/:name',getItemsByName);
-itemRouter.get('/id',getItemByUser)
+itemRouter.get('/item/:name',getItemsByName);
+
+itemRouter.get('/user/:id',getItemByUser)
 
 
 
