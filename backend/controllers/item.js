@@ -81,7 +81,7 @@ const deleteItemByUser = (req,res)=>{
 }
 
 const getAllItemRandom = (req,res)=>{
-    ItemModel.find().then((result)=>{
+    ItemModel.find({}).then((result)=>{
         res.status(200).json({
             success:true,
             message:"Item Random here",
@@ -112,7 +112,7 @@ const getItemsByName=(req,res)=>{
             err:err.message
         })
     })
-}
+};
 
 const getItemByUser =(req,res)=>{
     const id = req.params.id;
@@ -132,8 +132,8 @@ const getItemByUser =(req,res)=>{
     })
 
 }
-// On Dashboard's User will be related to token directly but the home page will be related to params.
-//! will be order using every functions here then delete and update.
+// On Dashboard's User will be related to token directly but the home page will be related to params.//!Done
+// will be order using every functions here then delete and update//!Done
 // get items by category name
 
 module.exports={

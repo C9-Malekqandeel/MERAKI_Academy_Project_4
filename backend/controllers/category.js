@@ -67,11 +67,13 @@ const getCategoryByName = (req,res)=>{
     });
 };
 
+// category related to the user
 const getCategoryByUser = (req,res)=>{
     const user = req.token.userId;
+    const name = req.params.name
     console.log(user);
 
-    ItemsModel.find({_id:user}).then((result)=>{
+    ItemsModel.find({user:user},{category :name}).populate('category').then((result)=>{
         if(!result){
             return res.status(404).json({
                 success:false,
@@ -80,7 +82,7 @@ const getCategoryByUser = (req,res)=>{
         }
         res.status(200).json({
             success:true,
-            message:`category ${user}`,
+            message:`category ${name}`,
             category:result
 
         }).catch((err) => {
@@ -96,9 +98,9 @@ const getCategoryByUser = (req,res)=>{
 
 // Get category for all item on the same user /:idUser after click
 const getAllCategoryForUser=(req,res)=>{
-    const id = req.params.id;
-    const name= req.token.userName;
-    CategoryModel.findMany(name).json({
+    const name = req.params.nameCat;
+    
+    CategoryModel.find(name).json({
         success:true,
         message:`category ${name}`,
         category:result

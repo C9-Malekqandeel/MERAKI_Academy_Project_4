@@ -13,6 +13,7 @@ itemRouter.put('/update/:id',authentication,authorization("UPDATE"),updateItemBy
 itemRouter.delete('/delete/:id',authentication,authorization("DELETE"),deleteItemByUser);
 
 itemRouter.get('/random',getAllItemRandom);
+
 itemRouter.get('/:name',getItemsByName);
 itemRouter.get('/id',getItemByUser)
 
