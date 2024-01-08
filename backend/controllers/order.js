@@ -1,8 +1,8 @@
-// On the order page you must be logged in before shown this page
+// On the order page you must be logged in before shown this page//!Done
 
-//! comment will be added later
+//comment will be added later//!Done
 
-//!Make sure to change the checkout's value once your updated the order
+//Make sure to change the checkout's value once your updated the order//!Done
 
 const orderModel = require('../models/ordersSchema');
 

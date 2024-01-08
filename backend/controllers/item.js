@@ -1,4 +1,5 @@
 const ItemModel = require("../models/itemsSchema");
+const CommentModel = require('../models/commentsSchema')
 
 const createItemByUser = (req,res)=>{
     const user = req.token.userId;
@@ -132,10 +133,96 @@ const getItemByUser =(req,res)=>{
         })
     })
 
+};
+
+const createNewComment =(req,res)=>{
+    const comment = req.body.comment;
+    const nameUser = req.token.userName;
+    const user = req.token.userId;
+
+    const newComment =new CommentModel({
+        comment,
+        user
+    })
+
+    newComment.save().then((result)=>{
+        res.status(200).json({
+            success:true,
+            message:"Comment posted",
+            comment:result,
+            userName:nameUser
+        })
+    }).catch((err)=>{
+        res.status(500).json({
+            success:false,
+            message:"Server Error",
+            err:err.message
+        })
+    })
+};
+
+const updateComment= (req,res)=>{
+    const commentId = req.params.id;
+    const nameUser = req.token.userName
+    const newOne = req.body.comment;
+
+    CommentModel.findByIdAndUpdate({_id:commentId},{comment:newOne},{new:true}).then((result)=>{
+        
+        if(!result){
+            return res.status(403).json({
+                success:false,
+                message:"Comment not found"
+            })
+        }
+
+        res.status(200).json({
+            success:true,
+            message:'comment updated',
+            comment:result,
+            userName:nameUser
+        })
+    }).catch((err)=>{
+        res.status(500).json({
+            success:false,
+            message:"Server Error",
+            err:err.message
+        })
+    })
+};
+
+const deleteComment = (req,res)=>{
+    const id = req.params.id;
+
+    CommentModel.findByIdAndDelete({_id:id}).then((result)=>{
+        
+        if(!result){
+            return res.status(403).json({
+                success:false,
+                message:"Comment not found"
+            })
+        }
+
+        res.status(200).json({
+            success:true,
+            message:'comment deleted',
+        })
+    }).catch((err)=>{
+        res.status(500).json({
+            success:false,
+            message:"Server Error",
+            err:err.message
+        })
+    })
+
 }
+
+
+
 // On Dashboard's User will be related to token directly but the home page will be related to params.//!Done
 // will be order using every functions here then delete and update//!Done
 // get items by category name
+
+//! Add Query for SearchBar then try using it in find dataItems
 
 module.exports={
     createItemByUser,
@@ -143,6 +230,9 @@ module.exports={
     deleteItemByUser,
     getAllItemRandom,
     getItemsByName,
-    getItemByUser
+    getItemByUser,
+    createNewComment,
+    updateComment,
+    deleteComment
 
 }
