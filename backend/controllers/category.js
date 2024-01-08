@@ -113,7 +113,8 @@ const getAllCategoryForUser=(req,res)=>{
         });
     });
 
-}
+};
+
 
 module.exports = {
     createCategory,

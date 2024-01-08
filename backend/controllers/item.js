@@ -100,7 +100,7 @@ const getAllItemRandom = (req,res)=>{
 const getItemsByName=(req,res)=>{
     const name = req.params.name;
 
-    ItemModel.find({_id:name}).then((result)=>{
+    ItemModel.find({_id:name}).populate('comments').exec().then((result)=>{
         res.status(200).json({
             success:true,
             message:`item ${name}`,
@@ -216,13 +216,71 @@ const deleteComment = (req,res)=>{
 
 }
 
+const getItemQueryById = (req,res)=>{
+    const name = req.query.name;
+    console.log(name);
 
+    ItemModel.find({name}).populate('comments').then((result)=>{
+        if(!result){
+            return res.status(403).json({
+                success:false,
+                message:"Item not found"
+            })
+        }
+
+        res.status(200).json({
+            success:true,
+            message:`item ${name}`,
+            item:result
+        })
+    }).catch((err)=>{
+        res.status(500).json({
+            success:false,
+            message:"Server Error",
+            err:err.message
+        })
+    })
+
+}
+
+const pushCommentToItem=(req,res)=>{
+    const idItem= req.params.id;
+    const{comment}=req.body;
+    const user=req.token.userId
+    const newCommentOne= new CommentModel({
+        comment,
+        user
+    })
+    console.log(user);
+
+    newCommentOne.save().then((result)=>{
+        console.log(result,"result");
+        ItemModel.findByIdAndUpdate({_id:idItem},{ $push:{comments:result._id}},{new:true}).then((result)=>{
+            res.status(200).json({
+                success:true,
+                message:"comment added",
+                comment: result
+            })
+        }).catch((err)=>{
+            res.status(500).json({
+                success:false,
+                message:"Server Error",
+                err:err.message
+            })
+        })
+    }).catch((err)=>{
+        res.status(500).json({
+            success:false,
+            message:"Server Error",
+            err:err.message
+        })});
+}
 
 // On Dashboard's User will be related to token directly but the home page will be related to params.//!Done
 // will be order using every functions here then delete and update//!Done
 // get items by category name
 
-//! Add Query for SearchBar then try using it in find dataItems
+// Add Query for SearchBar then try using it in find dataItems//!Done
 
 module.exports={
     createItemByUser,
@@ -233,6 +291,8 @@ module.exports={
     getItemByUser,
     createNewComment,
     updateComment,
-    deleteComment
+    deleteComment,
+    getItemQueryById,
+    pushCommentToItem
 
 }
