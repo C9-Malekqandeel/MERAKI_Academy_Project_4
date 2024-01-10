@@ -21,6 +21,8 @@ function ImagesItems() {
       //! Full Screen 
       <Image src="https://autocraftequipment.co.uk/wp-content/uploads/2022/11/red-sale-sign-sticker-illustration-isolated-white-background-31436582-200x200.jpg" fluid />
     </Container>
+
+    //! Let's try to use CARDs 3 here!
   );
 }
 
