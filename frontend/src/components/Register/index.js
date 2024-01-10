@@ -1,45 +1,53 @@
-import React,{useState} from 'react';
-import Button from 'react-bootstrap/Button';
-import Col from 'react-bootstrap/Col';
-import Form from 'react-bootstrap/Form';
-import InputGroup from 'react-bootstrap/InputGroup';
-import Row from 'react-bootstrap/Row';
-
+import React, { useState } from "react";
+import Button from "react-bootstrap/Button";
+import Col from "react-bootstrap/Col";
+import Form from "react-bootstrap/Form";
+import InputGroup from "react-bootstrap/InputGroup";
+import Row from "react-bootstrap/Row";
+import axios from "axios";
 
 const Register = () => {
-    const [userName, setUserName] = useState("");
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
-    const [location, setLocation] = useState("");
-    const [contact, setContact] = useState();
+  const [userName, setUserName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [location, setLocation] = useState("");
+  const [contact, setContact] = useState();
 
-    const [validated, setValidated] = useState(false);
+  const [validated, setValidated] = useState(false);
 
-    const handleSubmit = (event) => {
+  const handleSubmit = (event) => {
     const form = event.currentTarget;
     if (form.checkValidity() === false) {
-        event.preventDefault();
-        event.stopPropagation();
+      event.preventDefault();
+      event.stopPropagation();
     }
 
     setValidated(true);
   };
 
   return (
-    <Form>
+    <Form noValidate validated={validated} onSubmit={handleSubmit}>
       <Form.Group className="mb-3" controlId="formGroupEmail">
         <Form.Label>Email address</Form.Label>
-        <Form.Control type="email" placeholder="Enter email" onchange={(e)=>{
-                setEmail(e.target.value)
-              }}/>
+        <Form.Control
+          type="email"
+          placeholder="Enter email"
+          onChange={(e) => {
+            console.log("test");
+            setEmail(e.target.value);
+          }}
+        />
       </Form.Group>
       <Form.Group className="mb-3" controlId="formGroupPassword">
         <Form.Label>Password</Form.Label>
-        <Form.Control type="password" placeholder="Password" onchange={(e)=>{
-                setPassword(e.target.value)
-              }} />
+        <Form.Control
+          type="password"
+          placeholder="Password"
+          onChange={(e) => {
+            setPassword(e.target.value);
+          }}
+        />
       </Form.Group>
-
 
       <Row className="mb-3">
         <Form.Group as={Col} md="6" controlId="validationCustomUsername">
@@ -52,8 +60,8 @@ const Register = () => {
               aria-describedby="inputGroupPrepend"
               required
               //! New Adding
-              onchange={(e)=>{
-                setUserName(e.target.value)
+              onChange={(e) => {
+                setUserName(e.target.value);
               }}
             />
             <Form.Control.Feedback type="invalid">
@@ -63,14 +71,17 @@ const Register = () => {
         </Form.Group>
       </Row>
 
-
-
       <Row className="mb-3">
         <Form.Group as={Col} md="6" controlId="validationCustom03">
           <Form.Label>City</Form.Label>
-          <Form.Control type="text" placeholder="City" required onchange={(e)=>{
-                setLocation(e.target.value)
-              }} />
+          <Form.Control
+            type="text"
+            placeholder="City"
+            required
+            onChange={(e) => {
+              setLocation(e.target.value);
+            }}
+          />
           <Form.Control.Feedback type="invalid">
             Please provide a valid city.
           </Form.Control.Feedback>
@@ -78,9 +89,15 @@ const Register = () => {
 
         <Form.Group as={Col} md="6" controlId="validationCustom04">
           <Form.Label>Phone Number</Form.Label>
-          <Form.Control type="number" placeholder="State" required onchange={(e)=>{
-                setContact(e.target.value)
-              }}/>
+          <Form.Control
+            type="number"
+            placeholder="Phone Number"
+            required
+            onChange={(e) => {
+              setContact(e.target.value);
+              console.log(555);
+            }}
+          />
           <Form.Control.Feedback type="invalid">
             Please provide a valid state.
           </Form.Control.Feedback>
@@ -101,26 +118,31 @@ const Register = () => {
           feedbackType="invalid"
         />
       </Form.Group>
-      <Button type="submit" onClick={()=>{
-          axios.post('http://localhost:5000/users/register' , {
-
+      <Button
+        type="submit"
+        onClick={(e) => {
+            e.preventDefault()
+          console.log("TEST");
+          axios
+            .post("http://localhost:5000/users/register", {
               userName,
               email,
               password,
               contact,
-              location    
-          }
-        ).then((res)=>{
-          console.log(res);
-        }).catch((err)=>{
-          console.log(err)
-        })
-        }}>Submit form</Button>
-
-
+              location,
+            })
+            .then((res) => {
+              console.log(res);
+            })
+            .catch((err) => {
+              console.log(err);
+            });
+        }}
+      >
+        Submit form
+      </Button>
     </Form>
+  );
+};
 
-    )
-}
-
-export default Register
+export default Register;
