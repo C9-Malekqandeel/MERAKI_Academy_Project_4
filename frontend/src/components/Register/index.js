@@ -101,7 +101,21 @@ const Register = () => {
           feedbackType="invalid"
         />
       </Form.Group>
-      <Button type="submit">Submit form</Button>
+      <Button type="submit" onClick={()=>{
+          axios.post('http://localhost:5000/users/register' , {
+
+              userName,
+              email,
+              password,
+              contact,
+              location    
+          }
+        ).then((res)=>{
+          console.log(res);
+        }).catch((err)=>{
+          console.log(err)
+        })
+        }}>Submit form</Button>
 
 
     </Form>

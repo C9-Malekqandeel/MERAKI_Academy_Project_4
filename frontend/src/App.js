@@ -1,6 +1,6 @@
 import "./App.css";
 import { Routes, Route, Link } from "react-router-dom";
-import { Register } from "./components/Register";
+import Register from "./components/Register";
 
 function App() {
   return (
