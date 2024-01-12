@@ -5,6 +5,11 @@ import Form from "react-bootstrap/Form";
 import InputGroup from "react-bootstrap/InputGroup";
 import Row from "react-bootstrap/Row";
 import axios from "axios";
+import HeadBarHome from "../HeadBarHome";
+import Nav from 'react-bootstrap/Nav';
+import Modal from 'react-bootstrap/Modal';
+
+
 
 const Register = () => {
   const [userName, setUserName] = useState("");
@@ -26,9 +31,25 @@ const Register = () => {
   };
 
   return (
-    
-
     <Form noValidate validated={validated} onSubmit={handleSubmit}>
+
+            <HeadBarHome/>
+
+            <Nav justify variant="tabs" defaultActiveKey="/home">
+      <Nav.Item>
+        <Nav.Link href="/users/register">Register</Nav.Link>
+      </Nav.Item>
+      <Nav.Item>
+      <Nav.Link href="/users/login">Login</Nav.Link>
+      </Nav.Item>
+    </Nav>
+    //! new modals
+
+    <div
+      className="modal show"
+      style={{ display: 'block', position: 'initial' }}
+    >
+      <Modal.Dialog>
       
       <Row className="mb-3">
         <Form.Group as={Col} md="6" controlId="validationCustomUsername">
@@ -158,6 +179,9 @@ const Register = () => {
       >
         Register
       </Button>
+
+      </Modal.Dialog>
+    </div>
     </Form>
   );
 };
