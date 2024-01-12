@@ -26,28 +26,52 @@ const Register = () => {
   };
 
   return (
+    
+
     <Form noValidate validated={validated} onSubmit={handleSubmit}>
-      <Form.Group className="mb-3" controlId="formGroupEmail">
-        <Form.Label>Email address</Form.Label>
-        <Form.Control
-          type="email"
-          placeholder="Enter email"
-          onChange={(e) => {
-            console.log("test");
-            setEmail(e.target.value);
-          }}
-        />
-      </Form.Group>
-      <Form.Group className="mb-3" controlId="formGroupPassword">
-        <Form.Label>Password</Form.Label>
-        <Form.Control
-          type="password"
-          placeholder="Password"
-          onChange={(e) => {
-            setPassword(e.target.value);
-          }}
-        />
-      </Form.Group>
+      
+      <Row className="mb-3">
+        <Form.Group as={Col} md="6" controlId="validationCustomUsername">
+          <Form.Label>Email</Form.Label>
+          <InputGroup hasValidation>
+            <InputGroup.Text id="inputGroupPrepend">@</InputGroup.Text>
+            <Form.Control
+              type="email"
+              placeholder="Email"
+              aria-describedby="inputGroupPrepend"
+              required
+              //! New Adding
+              onChange={(e) => {
+                setEmail(e.target.value);
+              }}
+            />
+            <Form.Control.Feedback type="invalid">
+              Please choose a username.
+            </Form.Control.Feedback>
+          </InputGroup>
+        </Form.Group>
+      </Row>
+      
+      <Row className="mb-3">
+        <Form.Group as={Col} md="6" controlId="validationCustomUsername">
+          <Form.Label>Username</Form.Label>
+          <InputGroup hasValidation>
+            <Form.Control
+              type="password"
+              placeholder="Password"
+              aria-describedby="inputGroupPrepend"
+              required
+              //! New Adding
+              onChange={(e) => {
+                setPassword(e.target.value);
+              }}
+            />
+            <Form.Control.Feedback type="invalid">
+              Please choose right password.
+            </Form.Control.Feedback>
+          </InputGroup>
+        </Form.Group>
+      </Row>
 
       <Row className="mb-3">
         <Form.Group as={Col} md="6" controlId="validationCustomUsername">
@@ -87,6 +111,8 @@ const Register = () => {
           </Form.Control.Feedback>
         </Form.Group>
 
+        </Row>
+        <Row className="mb-3">
         <Form.Group as={Col} md="6" controlId="validationCustom04">
           <Form.Label>Phone Number</Form.Label>
           <Form.Control
@@ -102,13 +128,6 @@ const Register = () => {
             Please provide a valid state.
           </Form.Control.Feedback>
         </Form.Group>
-        <Form.Group as={Col} md="3" controlId="validationCustom05">
-          <Form.Label>Zip</Form.Label>
-          <Form.Control type="text" placeholder="Zip" required />
-          <Form.Control.Feedback type="invalid">
-            Please provide a valid zip.
-          </Form.Control.Feedback>
-        </Form.Group>
       </Row>
       <Form.Group className="mb-3">
         <Form.Check
@@ -120,9 +139,7 @@ const Register = () => {
       </Form.Group>
       <Button
         type="submit"
-        onClick={(e) => {
-            e.preventDefault()
-          console.log("TEST");
+        onClick={() => {
           axios
             .post("http://localhost:5000/users/register", {
               userName,
@@ -139,7 +156,7 @@ const Register = () => {
             });
         }}
       >
-        Submit form
+        Register
       </Button>
     </Form>
   );
