@@ -103,7 +103,17 @@ style={{ display: 'block', position: 'initial' }}
       </Form.Group>
       <Button
         type="submit"
-        
+        onClick={()=>{
+            axios.post('http://localhost:5000/users/register',{
+                email,
+                password
+            }).then((result)=>{
+                setToken(result.data.token);
+                navigate('/users/dashboard')
+            }).catch((err)=>{
+                console.log(err);
+            })
+        }}
       >
         Login
       </Button>

@@ -2,6 +2,7 @@ import React from 'react'
 import HeadBarHome from '../HeadBarHome'
 import ImagesItems from '../ImagesItems'
 import Slides from '../Slides'
+import Category from '../Category'
 
 const HomePage = () => {
   return (
@@ -9,6 +10,7 @@ const HomePage = () => {
         <HeadBarHome/>
         <ImagesItems/>
         <Slides/>
+        <Category/>
     </div>
   )
 }

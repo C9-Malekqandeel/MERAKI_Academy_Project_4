@@ -1,26 +1,41 @@
 import React,{useEffect,useState} from 'react';
 import axios from 'axios';
-import Alert from 'react-bootstrap/Alert';
-import Col from 'react-bootstrap/Col';
+import Button from 'react-bootstrap/Button';
+import Card from 'react-bootstrap/Card';
 import Container from 'react-bootstrap/Container';
-import Image from 'react-bootstrap/Image';
 import Row from 'react-bootstrap/Row';
 
 
 
 const Category = () => {
-    const [category, setCategory] = useState([]);
+    const [categoryList, setCategoryList] = useState([]);
 
-    useEffect(
+    useEffect(()=>{
         axios.get('http://localhost:5000/category').then((result)=>{
-            setCategory(...category,result.data)
+            setCategoryList([...categoryList,...result.data.categories])
         }).catch((err)=>{
             console.log(err);
         })
-    )
-  return (
-    
+    },[])
 
+  return (
+    <Container>
+    
+    {categoryList.map((elem,i)=>{
+        
+            return <> <Card style={{ width: '18rem' }}>
+            <Card.Img variant="top" src={elem.image} />
+            <Card.Body>
+            <Card.Title>{elem.name}</Card.Title>
+            <Button variant="primary" onClick={()=>{
+                //!navigate
+            }} >Go somewhere</Button>
+            </Card.Body>
+            </Card>
+            </>
+
+    })}
+    </Container>
   )
 }
 
