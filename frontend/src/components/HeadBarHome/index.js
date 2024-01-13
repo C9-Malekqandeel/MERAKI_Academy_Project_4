@@ -8,7 +8,7 @@ import { useContext } from 'react';
 
 
 function HeadBarHome() {
-    const {isLoggedIn} = useContext(UserContext)
+    //const {isLoggedIn} = useContext(UserContext)
   return (
     <Navbar collapseOnSelect expand="lg" className="bg-body-tertiary">
       <Container>

@@ -1,4 +1,4 @@
-import React,{useEffect,useState} from 'react';
+import React,{useEffect,useState,createContext} from 'react';
 import axios from 'axios';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
@@ -7,8 +7,9 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
 import { useNavigate } from 'react-router-dom';
-import './style.css'
 
+
+export const CategoryContext = createContext();
 
 const Category = () => {
     const [categoryList, setCategoryList] = useState([]);
@@ -35,6 +36,8 @@ const Category = () => {
     }
 
   return (
+    <CategoryContext.Provider value={itemsFromCategory}>
+
     <Container /* style={{ display: flex }} */>
            <Row md={8}>
 
@@ -49,6 +52,7 @@ const Category = () => {
             <Button variant="primary" onClick={()=>{
                 //!navigate
                 itemMovePage(elem._id)
+                setItemsFromCategory(elem.id)
 
             }} >Go somewhere</Button>
             </Card.Body>
@@ -59,6 +63,7 @@ const Category = () => {
     })}
     </Row>
     </Container>
+    </CategoryContext.Provider>
   )
 }
 

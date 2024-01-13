@@ -1,8 +1,9 @@
-import React from 'react'
+import React,{createContext} from 'react'
 import HeadBarHome from '../HeadBarHome'
 import ImagesItems from '../ImagesItems'
 import Slides from '../Slides'
-import Category from '../Category'
+import Category from '../Category';
+
 
 const HomePage = () => {
   return (
