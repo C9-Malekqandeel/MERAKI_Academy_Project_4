@@ -1,28 +1,51 @@
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import axios from 'axios'
-import { useEffect } from 'react';
+import { useEffect,useState } from 'react';
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 
 function Item() {
 
   const [items, setItems] = useState([]);
 
   useEffect(()=>{
-    axios.get('`http://localhost:5000/category/')
-  })
+    axios.get(`http://localhost:5000/items/random`).then((res)=>{
+      console.log(res);
+      setItems([...items,...res.data.items])
+    }).catch((err)=>{
+      console.log(err);
+    }
+    )
+  },[]);
+
+  console.log(items,"Items");
+
 
   return (
-    <Card style={{ width: '18rem' }}>
-      <Card.Img variant="top" src="holder.js/100px180" />
+    <>
+    <Container>
+      <Row>
+    {items.map((elem,i)=>{
+      return <>
+      <Col xs={{ order: 12 }}>
+      <Card style={{ width: '18rem' }}>
+      <Card.Img variant="top" src={elem.image} />
       <Card.Body>
-        <Card.Title>Card Title</Card.Title>
+        <Card.Title>{elem.name}</Card.Title>
         <Card.Text>
-          Some quick example text to build on the card title and make up the
-          bulk of the card's content.
+          {elem.description}
         </Card.Text>
-        <Button variant="primary">Go somewhere</Button>
+        <Button variant="primary">Show Item</Button>
       </Card.Body>
     </Card>
+    </Col></>
+
+    })}
+    </Row>
+    </Container>
+    </>
   );
 };
 
