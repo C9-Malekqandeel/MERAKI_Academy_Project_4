@@ -4,11 +4,17 @@ import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 
+import { useNavigate } from 'react-router-dom';
+import './style.css'
 
 
 const Category = () => {
     const [categoryList, setCategoryList] = useState([]);
+    const navigate = useNavigate();
+    const [itemsFromCategory, setItemsFromCategory] = useState();
+
 
     useEffect(()=>{
         axios.get('http://localhost:5000/category').then((result)=>{
@@ -18,23 +24,40 @@ const Category = () => {
         })
     },[])
 
+    console.log(categoryList);
+
+    const itemMovePage = (data)=>{
+        axios.get(`http://localhost:5000/category/${data}`).then((res)=>{
+            navigate(`/category/${data}`)
+        }).catch((err)=>{
+            console.log(err);
+        })
+    }
+
   return (
-    <Container>
-    
+    <Container /* style={{ display: flex }} */>
+           <Row md={8}>
+
     {categoryList.map((elem,i)=>{
         
-            return <> <Card style={{ width: '18rem' }}>
+            return <> 
+            <Col>
+            <Card style={{ width: '18rem' }}>
             <Card.Img variant="top" src={elem.image} />
             <Card.Body>
             <Card.Title>{elem.name}</Card.Title>
             <Button variant="primary" onClick={()=>{
                 //!navigate
+                itemMovePage(elem._id)
+
             }} >Go somewhere</Button>
             </Card.Body>
             </Card>
+            </Col>
             </>
 
     })}
+    </Row>
     </Container>
   )
 }

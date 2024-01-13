@@ -3,15 +3,17 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import imgLogo from '../images/Swap-logos_black.png'
-
+import { UserContext } from '../Login';
+import { useContext } from 'react';
 
 
 function HeadBarHome() {
+    const {isLoggedIn} = useContext(UserContext)
   return (
     <Navbar collapseOnSelect expand="lg" className="bg-body-tertiary">
       <Container>
         <Navbar.Brand className="Logo" href="/home">
-            <img src={imgLogo}/>
+            <img src={"imgLogo"}/>
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
