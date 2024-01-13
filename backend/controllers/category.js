@@ -29,13 +29,13 @@ const getAllCategory = (req,res)=>{
             success:true,
             message:"Showing All Categories",
             categories: result
+        })
         }).catch((err)=>{
             res.status(500).json({
                 success:false,
                 message:'Server Error',
                 error:err.message
             })
-        })
     })
 
 };
