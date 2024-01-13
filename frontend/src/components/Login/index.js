@@ -111,7 +111,7 @@ style={{ display: 'block', position: 'initial' }}
       setToken(res.data.token)
       setStateOfUser(res.data.success)
       localStorage.setItem("token",res.data.token);
-      setUserId(res.data.user._id)
+      setUserId(res.data.user)
       navigate('/users/Dashboard')
     }).catch((err)=>{
       console.log(err);

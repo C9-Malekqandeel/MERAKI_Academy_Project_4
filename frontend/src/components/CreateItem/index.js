@@ -3,7 +3,7 @@ import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
 import axios from 'axios';
-import { useContext, useEffect } from 'react';
+import { useContext, useEffect ,useState} from 'react';
 import { UserContext } from '../../App';
 
 function CreateItem() {
@@ -13,53 +13,73 @@ function CreateItem() {
     const [description, setDescription] = useState("");
     const [price, setPrice] = useState("");
     const [categories, setCategories] = useState([]);
+    const [category, setCategory] = useState("")
+    const [comment, setComment] = useState([])
     
-    const {userId} = useContext(UserContext);
+    const {userId,token} = useContext(UserContext);
 
     useEffect(()=>{
         axios.get("http://localhost:5000/category").then((res)=>{
-            setCategories(...categories,...res.data);
-            console.log(res.data);
+            setCategories([...categories,...res.data.categories]);
+            console.log(res.data.categories);
         }).catch((err)=>{
             console.log(err);
         })
-    })
+    },[])
+
+    console.log(userId, "user");
+
 
   return (
     <Form>
       <Row className="mb-3">
         <Form.Group as={Col} controlId="formGridEmail">
           <Form.Label>Name</Form.Label>
-          <Form.Control type="text" placeholder="Name of Item" />
+          <Form.Control type="text" placeholder="Name of Item" onChange={(e)=>{
+            setName(e.target.value)
+          }}/>
         </Form.Group>
 
         <Form.Group as={Col} controlId="formGridPassword">
           <Form.Label>Image</Form.Label>
-          <Form.Control type="text" placeholder="ULR image" />
+          <Form.Control type="text" placeholder="ULR image" onChange={(e)=>{
+            setImage(e.target.value)
+          }} />
         </Form.Group>
       </Row>
 
       <Form.Group className="mb-3" controlId="formGridAddress1">
         <Form.Label>Description</Form.Label>
-        <Form.Control placeholder="Description Here!" />
+        <Form.Control placeholder="Description Here!" onChange={(e)=>{
+            setDescription(e.target.value)
+          }}/>
       </Form.Group>
 
       <Form.Group className="mb-3" controlId="formGridAddress2">
         <Form.Label>Price</Form.Label>
-        <Form.Control placeholder="Price" />
+        <Form.Control placeholder="Price" onChange={(e)=>{
+            setPrice(e.target.value)
+          }}/>
       </Form.Group>
 
       <Row className="mb-3">
         <Form.Group as={Col} controlId="formGridCity">
-          <Form.Label>City</Form.Label>
-          <Form.Control />
+          <Form.Label>Comment</Form.Label>
+          <Form.Control placeholder='Any Comments!'  onChange={(e)=>{
+            setComment([...comment,e.target.value])
+          }}/>
         </Form.Group>
 
         <Form.Group as={Col} controlId="formGridState">
           <Form.Label>State</Form.Label>
           <Form.Select defaultValue="Choose...">
-            <option>Choose...</option>
-            <option>...</option>
+            {categories.map((elem,i)=>{
+                return <option onChange={(e)=>{
+                    setCategory(e.target.value)
+                }} >{elem.name}</option>
+            })}
+            
+            
           </Form.Select>
         </Form.Group>
         </Row>
@@ -68,8 +88,28 @@ function CreateItem() {
         <Form.Check type="checkbox" label="Check me out" />
       </Form.Group>
 
-      <Button variant="primary" type="submit">
-        Submit
+      <Button variant="primary" type="submit" onClick={()=>{
+        axios.post(`http://localhost:5000/items/create/${userId}`,{
+            name,
+            image,
+            description,
+            price,
+            category,
+            userId,
+            comment
+        },
+        {
+          headers: {
+            authorization: `Bearer ${token}`,
+          },
+        }).then((res)=>{
+            console.log(res.data);
+            //
+        }).catch((err)=>{
+            console.log(err);
+        })
+      }}>
+        Post 
       </Button>
     </Form>
   );
