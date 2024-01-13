@@ -30,6 +30,8 @@ const Register = () => {
     setValidated(true);
   };
 
+  console.log(userName,email);
+
   return (
     <Form noValidate validated={validated} onSubmit={handleSubmit}>
 
@@ -161,8 +163,7 @@ const Register = () => {
       <Button
         type="submit"
         onClick={() => {
-          axios
-            .post("http://localhost:5000/users/register", {
+          axios.post("http://localhost:5000/users/register", {
               userName,
               email,
               password,

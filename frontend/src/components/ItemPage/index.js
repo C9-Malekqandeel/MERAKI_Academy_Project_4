@@ -2,16 +2,25 @@ import React,{useContext,useState} from 'react'
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import axios from 'axios';
-import { CategoryContext } from '../Category';
+import { ItemContext } from '../Category';
 
 
 const ItemPage = () => {
 
-    const {itemsFromCategory} = useContext(CategoryContext);
+    const {itemCategory} = useContext(ItemContext);
+    const [items, setItems] = useState([])
 
-    const dataItems = (itemsFromCategory)=>{
-        axios.get(`http://localhost:5000/category/${itemsFromCategory}`).then()
-    }
+    /* useEffect((itemsFromCategory)=>{
+        axios.get(`http://localhost:5000/category/${itemsFromCategory}`).then((result)=>{
+            setItems(...items,...result.data)
+
+        }).catch((err)=>{
+            console.log(err);
+        })
+
+    },[])
+         */
+    
   return (
     <Card style={{ width: '18rem' }}>
       <Card.Img variant="top" src="holder.js/100px180" />

@@ -9,12 +9,13 @@ import Col from 'react-bootstrap/Col';
 import { useNavigate } from 'react-router-dom';
 
 
-export const CategoryContext = createContext();
+export const ItemContext = createContext();
 
 const Category = () => {
     const [categoryList, setCategoryList] = useState([]);
     const navigate = useNavigate();
-    const [itemsFromCategory, setItemsFromCategory] = useState();
+    const [itemCategory, setItemCategory] = useState([]);
+    const [idCategory, setIdCategory] = useState()
 
 
     useEffect(()=>{
@@ -26,24 +27,29 @@ const Category = () => {
     },[])
 
     console.log(categoryList);
+    console.log(itemCategory,"PPP");
 
-    const itemMovePage = (data)=>{
-        axios.get(`http://localhost:5000/category/${data}`).then((res)=>{
-            navigate(`/category/${data}`)
-        }).catch((err)=>{
-            console.log(err);
-        })
-    }
+
+    useEffect(()=>{
+        axios.get(`http://localhost:5000/category/${idCategory}`).then((res)=>{
+            console.log(res,"List");
+            setItemCategory(...itemCategory,...res.data)
+            }).catch((err)=>{
+                console.log(err);
+            })
+        },[])
+
 
   return (
-    <CategoryContext.Provider value={itemsFromCategory}>
-
+ 
     <Container /* style={{ display: flex }} */>
+        <ItemContext.Provider value={itemCategory}>
            <Row md={8}>
 
     {categoryList.map((elem,i)=>{
         
             return <> 
+            
             <Col>
             <Card style={{ width: '18rem' }}>
             <Card.Img variant="top" src={elem.image} />
@@ -51,8 +57,9 @@ const Category = () => {
             <Card.Title>{elem.name}</Card.Title>
             <Button variant="primary" onClick={()=>{
                 //!navigate
-                itemMovePage(elem._id)
-                setItemsFromCategory(elem.id)
+                setIdCategory(elem._id)
+                navigate(`/category/${elem._id}`)
+                
 
             }} >Go somewhere</Button>
             </Card.Body>
@@ -62,8 +69,8 @@ const Category = () => {
 
     })}
     </Row>
+    </ItemContext.Provider>
     </Container>
-    </CategoryContext.Provider>
   )
 }
 

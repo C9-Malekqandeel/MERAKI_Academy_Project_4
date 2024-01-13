@@ -1,4 +1,4 @@
-import React,{useState, createContext} from 'react'
+import React,{useState, useContext} from 'react'
 import { useNavigate } from 'react-router-dom';
 import Button from "react-bootstrap/Button";
 import Col from "react-bootstrap/Col";
@@ -9,14 +9,14 @@ import axios from "axios";
 import HeadBarHome from "../HeadBarHome";
 import Nav from 'react-bootstrap/Nav';
 import Modal from 'react-bootstrap/Modal';
+import { UserContext } from '../../App';
 
 
-export const UserContext = createContext();
 
 const Login = () => {
-    const [token, setToken] = useState(""||localStorage.getItem("token"));
 
-    const [isLoggedIn, setIsLoggedIn] = useState(true)
+    const {setToken,setUserId}=useContext(UserContext)
+    
     const [email, setEmail] = useState();
     const [password, setPassword] = useState();
     const [validated, setValidated] = useState(false);
@@ -35,9 +35,8 @@ const Login = () => {
       };
 
 
+     
   return (
-    <UserContext.Provider value={{token,setToken,isLoggedIn,setIsLoggedIn}}>
-
 
         <Form noValidate validated={validated} onSubmit={handleSubmit}>
 
@@ -104,16 +103,20 @@ style={{ display: 'block', position: 'initial' }}
       <Button
         type="submit"
         onClick={()=>{
-            axios.post('http://localhost:5000/users/register',{
-                email,
-                password
-            }).then((result)=>{
-                setToken(result.data.token);
-                navigate('/users/dashboard')
-            }).catch((err)=>{
-                console.log(err);
-            })
-        }}
+          axios.post('http://localhost:5000/users/login' , {
+          email,
+          password,
+      }
+    ).then((res)=>{
+      setToken(res.data.token)
+      setStateOfUser(res.data.success)
+      localStorage.setItem("token",res.data.token);
+      setUserId(res.data.user._id)
+      navigate('/users/Dashboard')
+    }).catch((err)=>{
+      console.log(err);
+    })
+      }}
       >
         Login
       </Button>
@@ -122,8 +125,6 @@ style={{ display: 'block', position: 'initial' }}
 </div>
 </Form>
 
-
-    </UserContext.Provider>
   )
 }
 
