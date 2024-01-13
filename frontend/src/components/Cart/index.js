@@ -1,16 +1,9 @@
+import React from 'react'
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
-import axios from 'axios'
-import { useEffect } from 'react';
 
-function Item() {
 
-  const [items, setItems] = useState([]);
-
-  useEffect(()=>{
-    axios.get('`http://localhost:5000/category/')
-  })
-
+const Cart = () => {
   return (
     <Card style={{ width: '18rem' }}>
       <Card.Img variant="top" src="holder.js/100px180" />
@@ -23,7 +16,8 @@ function Item() {
         <Button variant="primary">Go somewhere</Button>
       </Card.Body>
     </Card>
-  );
-};
 
-export default Item;
+  )
+}
+
+export default Cart

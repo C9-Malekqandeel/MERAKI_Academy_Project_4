@@ -3,6 +3,7 @@ import HeadBarHome from '../HeadBarHome'
 import ImagesItems from '../ImagesItems'
 import Slides from '../Slides'
 import Category from '../Category';
+import Item from '../Item';
 
 
 const HomePage = () => {
@@ -12,6 +13,7 @@ const HomePage = () => {
         <ImagesItems/>
         <Slides/>
         <Category/>
+        <Item/>
     </div>
   )
 }

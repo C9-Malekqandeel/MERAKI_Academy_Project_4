@@ -1,0 +1,23 @@
+.row-cols-md-8 {
+    background-color: #e8f8f8;
+    overflow: auto;
+    white-space: nowrap;
+    display: flex;
+    flex-direction: row;
+    padding-top: 5vh;
+  }
+.card {
+    display: inline-block;
+    color: white;
+    text-align: center;
+    padding: 14px;
+    text-decoration: none;
+    height: 50vh;
+  }
+  
+.card img{
+    height: 25vh;
+}
+.card:hover {
+    background-color: #777;
+  }

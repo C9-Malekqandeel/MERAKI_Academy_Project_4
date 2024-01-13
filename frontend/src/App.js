@@ -17,7 +17,7 @@ function App() {
 
     const [isLoggedIn, setIsLoggedIn] = useState(true);
 
-    const [userId, setUserId] = useState("second");
+    const [userId, setUserId] = useState("");
     const [itemId, setItemId] = useState("");
     const [categoryId, setCategoryId] = useState("")
 

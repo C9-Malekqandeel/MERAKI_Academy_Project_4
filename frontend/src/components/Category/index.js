@@ -5,6 +5,7 @@ import Card from 'react-bootstrap/Card';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import './style.css'
 
 import { useNavigate } from 'react-router-dom';
 
@@ -61,7 +62,7 @@ const Category = () => {
                 navigate(`/category/${elem._id}`)
                 
 
-            }} >Go somewhere</Button>
+            }} >Check Items!</Button>
             </Card.Body>
             </Card>
             </Col>
