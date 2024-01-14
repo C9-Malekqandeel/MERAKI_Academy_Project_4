@@ -3,12 +3,16 @@ import Button from 'react-bootstrap/Button';
 import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
-import axios from 'axios'
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
-const signInPage = () => {
+
+const SignInPage = () => {
     
-    const [email, setEmail] = useState();
-    const [password, setPassword] = useState();
+    const [emailTest, setEmailTest] = useState("");
+    const [passwordTest, setPasswordTest] = useState("");
+    const navigate = useNavigate()
+
     
   return (
     <Form>
@@ -18,7 +22,7 @@ const signInPage = () => {
       </Form.Label>
       <Col sm={10}>
         <Form.Control type="email" placeholder="Email" onChange={(e) => {
-                setEmail(e.target.value);
+                setEmailTest(e.target.value);
               }}/>
       </Col>
     </Form.Group>
@@ -29,7 +33,7 @@ const signInPage = () => {
       </Form.Label>
       <Col sm={10}>
         <Form.Control type="password" placeholder="Password" onChange={(e) => {
-                setPassword(e.target.value);
+                setPasswordTest(e.target.value);
               }}/>
       </Col>
     </Form.Group>
@@ -68,15 +72,15 @@ const signInPage = () => {
 
     <Form.Group as={Row} className="mb-3">
       <Col sm={{ span: 10, offset: 2 }}>
-        <Button type="submit" onClick={()=>{
+        <Button onClick={()=>{
           axios.post('http://localhost:5000/users/login' , {
-          email,
-          password
+          email: emailTest,
+          password: passwordTest
       }
     ).then((res)=>{
       localStorage.setItem("token",res.data.token);
-      moveToDashboard(res.data)
-      
+
+      navigate('/users/Dashboard')
     }).catch((err)=>{
       console.log(err);
     })
@@ -89,4 +93,4 @@ const signInPage = () => {
     )
 }
 
-export default signInPage
+export default SignInPage
