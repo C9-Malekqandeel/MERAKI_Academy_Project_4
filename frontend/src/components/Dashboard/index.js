@@ -6,6 +6,7 @@ import Alert from 'react-bootstrap/Alert';
 import CreateItem from '../CreateItem';
 import Category from '../Category';
 import CategoryListForCreateItem from '../CategoryListForCreateItem.js';
+import ItemsForUser from '../ItemsForUser/index.js';
 
 
 
@@ -43,8 +44,7 @@ const Dashboard = () => {
         </Alert>
     
     <CategoryListForCreateItem/>
-    
-
+    <ItemsForUser/>
 
 
         </>
