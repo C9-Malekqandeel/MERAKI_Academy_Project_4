@@ -10,7 +10,7 @@ categoryRouter.get("/",getAllCategory);
 categoryRouter.get("/:name",getCategoryByName);
 categoryRouter.get("/:id/:name",authentication,getCategoryByUser);
 
-categoryRouter.get('/:nameCat',authentication,authorization("READ"),getAllCategoryForUser)
+//categoryRouter.get('/:nameCat',authentication,authorization("READ"),getAllCategoryForUser)
 
 module.exports=categoryRouter;
 

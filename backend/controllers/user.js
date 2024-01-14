@@ -8,7 +8,8 @@ const register = (req, res)=>{
     const {userName, email, password, contact , location, role}= req.body;
 
     const newUser= new UserModel({
-        userName, email, password, contact , location, role
+        userName, email, password, contact , location, 
+        role:"65970717d41c8fd9496770a1"
     })
 
     newUser.save().then((result) => {
