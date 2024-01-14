@@ -5,6 +5,7 @@ import Row from 'react-bootstrap/Row';
 import axios from 'axios';
 import { useContext, useEffect ,useState} from 'react';
 import { UserContext } from '../../App';
+import { CategoryContext } from '../CategoryListForCreateItem.js';
 
 function CreateItem() {
 
@@ -13,10 +14,12 @@ function CreateItem() {
     const [description, setDescription] = useState("");
     const [price, setPrice] = useState("");
     const [categories, setCategories] = useState([]);
-    const [category, setCategory] = useState("")
+    
+    
     const [comment, setComment] = useState([])
     
-    const {userId,token} = useContext(UserContext);
+    const {userId,token,category} = useContext(UserContext,CategoryContext);
+
 
     useEffect(()=>{
         axios.get("http://localhost:5000/category").then((res)=>{
@@ -28,6 +31,7 @@ function CreateItem() {
     },[])
 
     console.log(userId, "user");
+    
 
 
   return (
@@ -70,25 +74,25 @@ function CreateItem() {
           }}/>
         </Form.Group>
 
-        <Form.Group as={Col} controlId="formGridState">
+        {/* <Form.Group as={Col} controlId="formGridState">
           <Form.Label>State</Form.Label>
           <Form.Select defaultValue="Choose...">
             {categories.map((elem,i)=>{
-                return <option onChange={(e)=>{
-                    setCategory(e.target.value)
+                return <option onClick={()=>{
+                    categoryName(elem)
                 }} >{elem.name}</option>
             })}
             
             
           </Form.Select>
-        </Form.Group>
+        </Form.Group> */}
         </Row>
 
       <Form.Group className="mb-3" id="formGridCheckbox">
         <Form.Check type="checkbox" label="Check me out" />
       </Form.Group>
 
-      <Button variant="primary" type="submit" onClick={()=>{
+      <Button variant="primary" onClick={()=>{
         axios.post(`http://localhost:5000/items/create/${userId}`,{
             name,
             image,

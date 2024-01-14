@@ -4,13 +4,15 @@ import { UserContext } from '../../App';
 import NavBarSignIn from '../NavBarSignIn';
 import Alert from 'react-bootstrap/Alert';
 import CreateItem from '../CreateItem';
+import Category from '../Category';
+import CategoryListForCreateItem from '../CategoryListForCreateItem.js';
 
 
 
 const Dashboard = () => {
     //will be converted directly once the user logged in his account
 
-    const {token}= useContext(UserContext)
+    const {token,userId}= useContext(UserContext)
 
     //! navbar
     //! calender
@@ -39,7 +41,8 @@ const Dashboard = () => {
     <Alert  variant={"info"}>
         Welcome to your board
         </Alert>
-    <CreateItem/>
+    
+    <CategoryListForCreateItem/>
     
 
 

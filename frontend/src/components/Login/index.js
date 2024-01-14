@@ -38,13 +38,13 @@ const Login = () => {
 
 
      const moveToDashboard = (data)=>{
-      console.log(data,"Data");
+      console.log(data.user._id,"Data");
 
 
               setToken(data.token)
               setStateOfUser(data.success)
               setUserId(data.user._id)
-              //navigate('/Dashboard')
+              navigate('/users/Dashboard')
               
      } 
 
