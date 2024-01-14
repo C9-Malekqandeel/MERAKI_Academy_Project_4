@@ -1,4 +1,4 @@
-import React,{useEffect,useState,createContext} from 'react';
+import React,{useEffect,useState,useContext} from 'react';
 import axios from 'axios';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
@@ -8,15 +8,17 @@ import Col from 'react-bootstrap/Col';
 import './style.css'
 
 import { useNavigate } from 'react-router-dom';
+import { UserContext } from '../../App';
 
-
-export const ItemContext = createContext();
 
 const Category = () => {
     const [categoryList, setCategoryList] = useState([]);
     const navigate = useNavigate();
     const [itemCategory, setItemCategory] = useState([]);
-    const [idCategory, setIdCategory] = useState()
+
+    const {setCategoryId} = useContext(UserContext)
+    
+    
 
 
     useEffect(()=>{
@@ -28,10 +30,10 @@ const Category = () => {
     },[])
 
     console.log(categoryList);
-    console.log(itemCategory,"PPP");
+    
 
 
-    useEffect(()=>{
+   /*  useEffect(()=>{
         axios.get(`http://localhost:5000/category/${idCategory}`).then((res)=>{
             console.log(res,"List");
             setItemCategory(...itemCategory,...res.data)
@@ -39,12 +41,12 @@ const Category = () => {
                 console.log(err);
             })
         },[])
-
+ */
 
   return (
  
     <Container /* style={{ display: flex }} */>
-        <ItemContext.Provider value={itemCategory}>
+        
            <Row md={8}>
 
     {categoryList.map((elem,i)=>{
@@ -58,7 +60,7 @@ const Category = () => {
             <Card.Title>{elem.name}</Card.Title>
             <Button variant="primary" onClick={()=>{
                 //!navigate
-                setIdCategory(elem._id)
+                setCategoryId(elem._id)
                 navigate(`/category/${elem._id}`)
                 
 
@@ -70,7 +72,8 @@ const Category = () => {
 
     })}
     </Row>
-    </ItemContext.Provider>
+    
+    
     </Container>
   )
 }

@@ -4,6 +4,7 @@ import ImagesItems from '../ImagesItems'
 import Slides from '../Slides'
 import Category from '../Category';
 import Item from '../Item';
+import SignInPage from '../SignInPage';
 
 
 const HomePage = () => {
@@ -14,6 +15,7 @@ const HomePage = () => {
         <Slides/>
         <Category/>
         <Item/>
+        <SignInPage/>
     </div>
   )
 }

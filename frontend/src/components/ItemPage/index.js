@@ -1,38 +1,46 @@
-import React,{useContext,useState} from 'react'
+import React,{useContext,useState,useEffect} from 'react'
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import axios from 'axios';
-import { ItemContext } from '../Category';
+import { UserContext } from '../../App';
+
 
 
 const ItemPage = () => {
 
-    const {itemCategory} = useContext(ItemContext);
-    const [items, setItems] = useState([])
+   
+    const {categoryId} = useContext(UserContext);
+    const [items, setItems] = useState([]);
 
-    /* useEffect((itemsFromCategory)=>{
-        axios.get(`http://localhost:5000/category/${itemsFromCategory}`).then((result)=>{
-            setItems(...items,...result.data)
+    useEffect(()=>{
+        axios.get(`http://localhost:5000/category/${categoryId}`).then((result)=>{
+            setItems(...items,...result.data.items)
 
         }).catch((err)=>{
             console.log(err);
         })
 
     },[])
-         */
-    
+        
+    console.log(items, ">>items");
   return (
-    <Card style={{ width: '18rem' }}>
-      <Card.Img variant="top" src="holder.js/100px180" />
-      <Card.Body>
-        <Card.Title>Card Title</Card.Title>
-        <Card.Text>
-          Some quick example text to build on the card title and make up the
-          bulk of the card's content.
-        </Card.Text>
-        <Button variant="primary">Go somewhere</Button>
-      </Card.Body>
-    </Card>
+    <>
+
+    {items.map((item,i)=>{
+        return <Card style={{ width: '18rem' }}>
+        <Card.Img variant="top" src={item.image} />
+        <Card.Body>
+          <Card.Title>{item.name}</Card.Title>
+          <Card.Text>
+            {item.description}
+          </Card.Text>
+          <Button variant="primary">Showing Item</Button>
+        </Card.Body>
+      </Card>
+  
+    })}
+    
+    </>
 
 
     )
