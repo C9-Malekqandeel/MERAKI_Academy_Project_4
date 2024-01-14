@@ -5,10 +5,12 @@ import { useEffect,useState } from 'react';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import { useNavigate } from 'react-router-dom';
 
 function Item() {
 
   const [items, setItems] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(()=>{
     axios.get(`http://localhost:5000/items/random`).then((res)=>{
@@ -37,7 +39,9 @@ function Item() {
         <Card.Text>
           {elem.description}
         </Card.Text>
-        <Button variant="primary">Show Item</Button>
+        <Button variant="primary" onClick={()=>{
+          navigate(`/item/${elem._id}`)
+        }}>Show Item</Button>
       </Card.Body>
     </Card>
     </Col></>

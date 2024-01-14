@@ -12,6 +12,7 @@ function UpdateItem() {
 
     const {userId,token,item} = useContext(UserContext,ItemContext);
 
+    console.log(item);
     const [name, setName] = useState("");
     const [image, setImage] = useState("");
     const [description, setDescription] = useState("");

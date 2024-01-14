@@ -25,11 +25,13 @@ const ItemsForUser = () => {
 
 
     console.log(itemsUser);
+    console.log(item,"item");
   return (
     
     <>
     <ItemContext.Provider value={item}>
     {itemsUser.map((elem,i)=>{
+        console.log(elem);
         return <>
         
         <Card style={{ width: '18rem' }}>
@@ -47,8 +49,8 @@ const ItemsForUser = () => {
       <Card.Body>
 
         <Card.Link href="#">Card Link</Card.Link>
-        <Card.Link onClick={()=>{
-            setItem(elem)
+        <Card.Link onChange={()=>{
+            setItem(elem.category)
             {<ModalForUpdateItem/>}
             {<UpdateItem/>}
         }}>

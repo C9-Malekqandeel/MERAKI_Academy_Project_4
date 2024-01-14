@@ -21,6 +21,7 @@ function CreateItem() {
     const {userId,token,category} = useContext(UserContext,CategoryContext);
 
 
+    console.log(category);
     useEffect(()=>{
         axios.get("http://localhost:5000/category").then((res)=>{
             setCategories([...categories,...res.data.categories]);

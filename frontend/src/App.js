@@ -7,6 +7,8 @@ import Dashboard from "./components/Dashboard";
 import About from './components/About'
 import ItemPage from "./components/ItemPage";
 import {useState, createContext } from "react";
+import Cart from './components/Cart'
+import PageForItemDetails from "./components/PageForItemDetails";
 
 export const UserContext = createContext();
 
@@ -32,9 +34,12 @@ function App() {
       <Route path="/users/Dashboard" element={<Dashboard/>}/>
       <Route path="/Category/:id" element={<ItemPage/>}/>
 
-      {
+      
       <Route path="/About" element={<about/>}/>
-}
+
+      <Route path="/orders" element={<Cart/>}/>
+      <Route path="/item/:name" element={<PageForItemDetails/>}/>
+
     </Routes>
 
     </UserContext.Provider>
