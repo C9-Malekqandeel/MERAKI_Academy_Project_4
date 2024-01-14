@@ -1,8 +1,11 @@
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import UpdateItem from '../UpdateItem';
+import React,{useContext} from 'react';
+import { ItemContext } from '../ItemsForUser';
 
 function ModalForUpdateItem(props) {
+    const {item} = useContext(ItemContext)
   return (
     <Modal
       {...props}

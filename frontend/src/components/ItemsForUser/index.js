@@ -3,7 +3,9 @@ import axios from 'axios';
 import { UserContext } from '../../App';
 import Card from 'react-bootstrap/Card';
 import ListGroup from 'react-bootstrap/ListGroup';
+import Button from 'react-bootstrap/Button';
 import ModalForUpdateItem from '../ModalForUpdateItem';
+import UpdateItem from '../UpdateItem';
 
 export const ItemContext = createContext();
 
@@ -11,6 +13,7 @@ const ItemsForUser = () => {
     const [itemsUser, setItemsUser] = useState([]);
     const {userId}=useContext(UserContext);
     const [item, setItem] = useState("");
+    const [modalShow, setModalShow] = useState(false);
 
     useEffect(()=>{
         axios.get(`http://localhost:5000/items/user/${userId}`).then((res)=>{
@@ -47,7 +50,18 @@ const ItemsForUser = () => {
         <Card.Link onClick={()=>{
             setItem(elem)
             {<ModalForUpdateItem/>}
-        }}>Update Item</Card.Link>
+            {<UpdateItem/>}
+        }}>
+            <Button variant="primary" onClick={() => setModalShow(true)}>
+        Launch vertically centered modal
+      </Button>
+
+      <ModalForUpdateItem
+        show={modalShow}
+        onHide={() => setModalShow(false)}
+      />
+         
+        </Card.Link>
       </Card.Body>
     </Card>
         </>
