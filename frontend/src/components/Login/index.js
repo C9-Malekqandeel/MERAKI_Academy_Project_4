@@ -1,5 +1,5 @@
 import React,{useState, useContext} from 'react'
-import { useNavigate } from 'react-router-dom';
+import { useNavigate,useParams } from 'react-router-dom';
 import Button from "react-bootstrap/Button";
 import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
@@ -14,10 +14,11 @@ import { UserContext } from '../../App';
 
 
 const Login = () => {
+/* const {id} = useParams(); */
 
 
 
-    const {setToken,setUserId}=useContext(UserContext)
+    const {setToken,setUserId,setIsLoggedIn}=useContext(UserContext)
     
     const [email, setEmail] = useState();
     const [password, setPassword] = useState();
@@ -44,7 +45,9 @@ const Login = () => {
               setToken(data.token)
               setStateOfUser(data.success)
               setUserId(data.user._id)
-              navigate('/users/Dashboard')
+              localStorage.setItem("userId",data.user._id)
+              navigate(`/users/Dashboard`)
+          
               
      } 
 
@@ -146,6 +149,7 @@ onClick={()=>{
       }
     ).then((res)=>{
       localStorage.setItem("token",res.data.token);
+      setIsLoggedIn(true)
       moveToDashboard(res.data)
       
     }).catch((err)=>{

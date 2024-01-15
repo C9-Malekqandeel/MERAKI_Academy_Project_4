@@ -17,9 +17,9 @@ function App() {
 
     const [token, setToken] = useState(""||localStorage.getItem("token"));
 
-    const [isLoggedIn, setIsLoggedIn] = useState(true);
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-    const [userId, setUserId] = useState("");
+    const [userId, setUserId] = useState(""|| localStorage.getItem("userId"));
     const [itemId, setItemId] = useState("");
     const [categoryId, setCategoryId] = useState("")
 
@@ -29,15 +29,15 @@ function App() {
     <Routes>
 
       <Route path="/Home" element={<HomePage/>}/>
+      <Route path="/About" element={<about/>}/>
       <Route path="/users/register" element={<Register />} />
       <Route path="/users/login" element={<Login/>} />
-      <Route path="/users/Dashboard" element={<Dashboard/>}/>
       <Route path="/Category/:id" element={<ItemPage/>}/>
-
-      
-      <Route path="/About" element={<about/>}/>
-
+{ isLoggedIn && <>
+      <Route path="/users/Dashboard" element={<Dashboard/>}/>
       <Route path="/orders" element={<Cart/>}/>
+      </> 
+}
       <Route path="/item/:name" element={<PageForItemDetails/>}/>
 
     </Routes>

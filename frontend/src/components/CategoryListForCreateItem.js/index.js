@@ -1,18 +1,19 @@
-import React,{useState,createContext,useEffect} from 'react'
+import React,{useState,createContext,useContext,useEffect} from 'react'
 import { useNavigate } from 'react-router-dom';
 import { UserContext } from '../../App';
 import Figure from 'react-bootstrap/Figure';
 import CreateItem from '../CreateItem';
 import axios from 'axios'
+import Button from 'react-bootstrap/esm/Button';
 import ModalForShowCreateItem from '../ModalForShowCreateItem';
-import Button from 'react-bootstrap/Button';
-import Modal from 'react-bootstrap/Modal';
 export const CategoryContext = createContext();
 
 
 const CategoryListForCreateItem = () => {
     const [categoryList, setCategoryList] = useState([]);
     const navigate = useNavigate();
+
+    const {setCategoryId} = useContext(UserContext)
     const [itemCategory, setItemCategory] = useState([]);
     const [category, setCategory] = useState("");
     const [modalShow, setModalShow] = useState(false);
@@ -51,7 +52,10 @@ const CategoryListForCreateItem = () => {
             </Figure.Caption>
           </Figure>
           
-          <Button variant="primary" onClick={() => setModalShow(true)}>
+          <Button variant="primary" onClick={() => {
+            setModalShow(true) 
+            setCategoryId(elem._id)
+          }}>
         Launch vertically centered modal
       </Button>
 

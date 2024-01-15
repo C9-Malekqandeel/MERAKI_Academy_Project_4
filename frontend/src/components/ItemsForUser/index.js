@@ -11,12 +11,19 @@ export const ItemContext = createContext();
 
 const ItemsForUser = () => {
     const [itemsUser, setItemsUser] = useState([]);
-    const {userId}=useContext(UserContext);
+    const {userId,token}=useContext(UserContext);
     const [item, setItem] = useState("");
     const [modalShow, setModalShow] = useState(false);
 
+    console.log(userId);
+
     useEffect(()=>{
-        axios.get(`http://localhost:5000/items/user/${userId}`).then((res)=>{
+        axios.get(`http://localhost:5000/items/user/${userId}`, 
+        {
+          headers: {
+            authorization: `Bearer ${token}`,
+          }}).then((res)=>{
+          console.log(res.data);
             setItemsUser([...itemsUser,...res.data.item])
         }).catch((err)=>{
             console.log(err);

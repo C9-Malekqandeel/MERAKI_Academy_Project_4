@@ -18,10 +18,9 @@ function CreateItem() {
     
     const [comment, setComment] = useState([])
     
-    const {userId,token,category} = useContext(UserContext,CategoryContext);
+    const {userId,token,categoryId} = useContext(UserContext);
 
 
-    console.log(category);
     useEffect(()=>{
         axios.get("http://localhost:5000/category").then((res)=>{
             setCategories([...categories,...res.data.categories]);
@@ -32,6 +31,9 @@ function CreateItem() {
     },[])
 
     console.log(userId, "user");
+    console.log(categoryId, "category");
+
+    
     
 
 
@@ -99,7 +101,7 @@ function CreateItem() {
             image,
             description,
             price,
-            category,
+            categoryId,
             userId,
             comment
         },

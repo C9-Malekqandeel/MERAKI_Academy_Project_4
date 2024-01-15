@@ -15,7 +15,7 @@ const HomePage = () => {
         <Slides/>
         <Category/>
         <Item/>
-        <SignInPage/>
+        {/* <SignInPage/> */}
     </div>
   )
 }

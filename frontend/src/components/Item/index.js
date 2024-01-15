@@ -1,16 +1,18 @@
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import axios from 'axios'
-import { useEffect,useState } from 'react';
+import { useEffect,useState,useContext } from 'react';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import { useNavigate } from 'react-router-dom';
+import { UserContext } from '../../App';
 
 function Item() {
 
   const [items, setItems] = useState([]);
   const navigate = useNavigate();
+  const {setItemId} = useContext(UserContext);
 
   useEffect(()=>{
     axios.get(`http://localhost:5000/items/random`).then((res)=>{
@@ -40,7 +42,8 @@ function Item() {
           {elem.description}
         </Card.Text>
         <Button variant="primary" onClick={()=>{
-          navigate(`/item/${elem._id}`)
+          setItemId(elem._id);
+          navigate(`/item/${elem._id}`);
         }}>Show Item</Button>
       </Card.Body>
     </Card>
