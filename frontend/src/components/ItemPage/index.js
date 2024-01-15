@@ -10,12 +10,17 @@ import { useParams } from 'react-router-dom';
 const ItemPage = () => {
 
     const {id} = useParams();
+    console.log(id ,"id");
     const {categoryId} = useContext(UserContext);
     const [items, setItems] = useState([]);
 
     useEffect(()=>{
         axios.get(`http://localhost:5000/category/${id}`).then((result)=>{
-            setItems(...items,...result.data.items)
+          console.log("Data",result.data.ItemOfCategory
+          );
+            setItems(result.data.ItemOfCategory
+              )
+           
 
         }).catch((err)=>{
             console.log(err);
@@ -23,11 +28,11 @@ const ItemPage = () => {
 
     },[])
         
-    console.log(items, ">>items");
+    //console.log(items, ">>items");
   return (
     <>
 
-    {items.map((item,i)=>{
+    {items.length >0 ? items.map((item,i)=>{
         return <Card style={{ width: '18rem' }}>
         <Card.Img variant="top" src={item.image} />
         <Card.Body>
@@ -39,7 +44,7 @@ const ItemPage = () => {
         </Card.Body>
       </Card>
   
-    })}
+    }):<p>No</p> }
     
     </>
 

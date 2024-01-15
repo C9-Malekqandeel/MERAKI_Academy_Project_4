@@ -17,7 +17,7 @@ function App() {
 
     const [token, setToken] = useState(""||localStorage.getItem("token"));
 
-    const [isLoggedIn, setIsLoggedIn] = useState(false);
+    const [isLoggedIn, setIsLoggedIn] = useState(false ||localStorage.getItem("isLoggedIn"));
 
     const [userId, setUserId] = useState(""|| localStorage.getItem("userId"));
     const [itemId, setItemId] = useState("");

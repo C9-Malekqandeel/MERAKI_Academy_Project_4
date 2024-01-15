@@ -46,6 +46,7 @@ const Login = () => {
               setStateOfUser(data.success)
               setUserId(data.user._id)
               localStorage.setItem("userId",data.user._id)
+              localStorage.setItem("isLoggedIn",true)
               navigate(`/users/Dashboard`)
           
               
