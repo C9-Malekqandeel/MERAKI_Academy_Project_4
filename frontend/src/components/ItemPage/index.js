@@ -3,17 +3,18 @@ import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import axios from 'axios';
 import { UserContext } from '../../App';
+import { useParams } from 'react-router-dom';
 
 
 
 const ItemPage = () => {
 
-   
+    const {id} = useParams();
     const {categoryId} = useContext(UserContext);
     const [items, setItems] = useState([]);
 
     useEffect(()=>{
-        axios.get(`http://localhost:5000/category/${categoryId}`).then((result)=>{
+        axios.get(`http://localhost:5000/category/${id}`).then((result)=>{
             setItems(...items,...result.data.items)
 
         }).catch((err)=>{

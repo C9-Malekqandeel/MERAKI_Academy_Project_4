@@ -7,7 +7,8 @@ import { useContext, useEffect ,useState} from 'react';
 import { UserContext } from '../../App';
 import { CategoryContext } from '../CategoryListForCreateItem.js';
 
-function CreateItem() {
+function CreateItem({id}) {
+  console.log(id,"use");
 
     const [name, setName] = useState("");
     const [image, setImage] = useState("");
@@ -101,7 +102,7 @@ function CreateItem() {
             image,
             description,
             price,
-            categoryId,
+            category:id,
             userId,
             comment
         },

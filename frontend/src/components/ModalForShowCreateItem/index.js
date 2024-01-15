@@ -17,7 +17,7 @@ function ModalForShowCreateItem(props) {
       </Modal.Header>
       <Modal.Body>
         
-        {<CreateItem/>}
+        {<CreateItem id={props.show} />}
       </Modal.Body>
       <Modal.Footer>
         <Button onClick={props.onHide}>Close</Button>

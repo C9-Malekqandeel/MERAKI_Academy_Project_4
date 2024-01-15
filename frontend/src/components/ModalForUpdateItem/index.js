@@ -20,7 +20,7 @@ function ModalForUpdateItem(props) {
       </Modal.Header>
       <Modal.Body>
         
-        {<UpdateItem/>}
+        {<UpdateItem id={props.show} />}
       </Modal.Body>
       <Modal.Footer>
         <Button onClick={props.onHide}>Close</Button>

@@ -8,16 +8,15 @@ import { UserContext } from '../../App';
 import { CategoryContext } from '../CategoryListForCreateItem.js';
 import { ItemContext } from '../ItemsForUser/index.js';
 
-function UpdateItem() {
+function UpdateItem({id}) {
 
-    const {userId,token,item} = useContext(UserContext,ItemContext);
+    const {userId,token} = useContext(UserContext);
 
-    console.log(item);
     const [name, setName] = useState("");
     const [image, setImage] = useState("");
     const [description, setDescription] = useState("");
     const [price, setPrice] = useState("");
-    const [category, setCategory] = useState(item.category);
+    const [category, setCategory] = useState();
     
     
     const [comment, setComment] = useState([])
@@ -26,7 +25,7 @@ function UpdateItem() {
 
     
     const UpdateItemForUser=()=>{
-        axios.put(`http://localhost:5000/items/update/${item._id}`,{
+        axios.put(`http://localhost:5000/items/update/${id}`,{
             name,
             image,
             description,
@@ -44,6 +43,7 @@ function UpdateItem() {
             console.log(err);
           })
     };
+
 
 
   return (

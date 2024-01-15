@@ -13,7 +13,7 @@ const ItemsForUser = () => {
     const [itemsUser, setItemsUser] = useState([]);
     const {userId,token}=useContext(UserContext);
     const [item, setItem] = useState("");
-    const [modalShow, setModalShow] = useState(false);
+    const [modalShow, setModalShow] = useState("");
 
     console.log(userId);
 
@@ -30,6 +30,17 @@ const ItemsForUser = () => {
         })
     },[]);
 
+    const DeleteItem= (id)=>{
+      axios.delete(`http://localhost:5000/items/delete/${id}`,{
+        headers: {
+          authorization: `Bearer ${token}`,
+        },
+      }).then((res)=>{
+        console.log(res);
+      }).catch((err)=>{
+        console.log(err);
+      })
+    }
 
     console.log(itemsUser);
     console.log(item,"item");
@@ -55,13 +66,20 @@ const ItemsForUser = () => {
       </ListGroup>
       <Card.Body>
 
-        <Card.Link href="#">Card Link</Card.Link>
-        <Card.Link onChange={()=>{
+        {/* <Card.Link onClick={()=>{
+          DeleteItem(elem._id)
+        }}>Card Link</Card.Link>
+ */}
+        {/* <Card.Link onChange={()=>{
             setItem(elem.category)
             {<ModalForUpdateItem/>}
             {<UpdateItem/>}
-        }}>
-            <Button variant="primary" onClick={() => setModalShow(true)}>
+        }}> */}
+
+        <Button variant='primary' onClick={()=>{
+          DeleteItem(elem._id)
+        }}></Button>
+            <Button variant="primary" onClick={() => setModalShow(elem._id)}>
         Launch vertically centered modal
       </Button>
 
@@ -70,7 +88,7 @@ const ItemsForUser = () => {
         onHide={() => setModalShow(false)}
       />
          
-        </Card.Link>
+        {/* </Card.Link> */}
       </Card.Body>
     </Card>
         </>

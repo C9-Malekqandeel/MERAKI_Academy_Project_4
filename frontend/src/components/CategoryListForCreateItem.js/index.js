@@ -16,7 +16,7 @@ const CategoryListForCreateItem = () => {
     const {setCategoryId} = useContext(UserContext)
     const [itemCategory, setItemCategory] = useState([]);
     const [category, setCategory] = useState("");
-    const [modalShow, setModalShow] = useState(false);
+    const [modalShow, setModalShow] = useState("");
     
 
 
@@ -53,14 +53,14 @@ const CategoryListForCreateItem = () => {
           </Figure>
           
           <Button variant="primary" onClick={() => {
-            setModalShow(true) 
+            setModalShow(elem._id) 
             setCategoryId(elem._id)
           }}>
         Launch vertically centered modal
       </Button>
 
       <ModalForShowCreateItem
-        show={modalShow}
+        show={modalShow} category={elem._id}
         onHide={() => setModalShow(false)}
       />
           </>
