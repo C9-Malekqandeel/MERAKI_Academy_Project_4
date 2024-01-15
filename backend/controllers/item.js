@@ -100,7 +100,7 @@ const getAllItemRandom = (req,res)=>{
 const getItemsByName=(req,res)=>{
     const name = req.params.name;
 
-    ItemModel.find({_id:name}).populate('comments').exec().then((result)=>{
+    ItemModel.find({_id:name}).populate('comments').populate("user").exec().then((result)=>{
         res.status(200).json({
             success:true,
             message:`item ${name}`,
