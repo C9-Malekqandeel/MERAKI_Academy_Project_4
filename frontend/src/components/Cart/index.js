@@ -8,7 +8,7 @@ import axios from "axios"
 
 const Cart = () => {
   const userId = localStorage.getItem("userId");
-  const [order, setOrder] = useState()
+  const [order, setOrder] = useState([])
   const token = localStorage.getItem("token");
 
   useEffect(()=>{
@@ -18,13 +18,27 @@ const Cart = () => {
       },
     }).then((res)=>{ 
       console.log(res.data.order);
-      setOrder(res.data.order[0])
+      setOrder([...order,...res.data.order])
   }).catch((err)=>{
       console.log(err);
   })
   },[]);
 
   console.log(order);
+
+  const checkout= (id)=>{
+    axios.put(`http://localhost:5000/orders/checkout/${id}`,{
+           checkout
+        }, {
+            headers: {
+              authorization: `Bearer ${token}`,
+            },
+          }).then((res)=>{
+            console.log(res);
+          }).catch((err)=>{
+            console.log(err);
+          })
+  }
 
   return (
     <>
@@ -34,19 +48,35 @@ const Cart = () => {
         </Alert>
     <>
 
-    {}
-
+    {order.map((elem,i)=>{
+      return <>
       <Card className="text-center">
-      <Card.Header>Order with </Card.Header>
+      <Card.Header>Your Order No.{i+1} </Card.Header>
       <Card.Body>
-        <Card.Title>elem</Card.Title>
+        
+        <Card.Title>The item:{elem.item.name} </Card.Title>
         <Card.Text>
-          With supporting text below as a natural lead-in to additional content.
+        <Card.Img variant="top" src={elem.item.image} />
+          <p>Description of Item : {elem.item.description} </p>
+          <p>
+            Seller's Details : 
+            -Name:{elem.user.userName}
+            -Contact:{elem.user.contact}
+            -location:{elem.user.location}
+          </p>
         </Card.Text>
-        <Button variant="primary">Go somewhere</Button>
+        <Button variant="primary" onClick={()=>{
+          checkout(elem._id)
+
+        }} >Checkout Here!</Button>
       </Card.Body>
       <Card.Footer className="text-muted">2 days ago</Card.Footer>
     </Card>
+
+        
+      </>
+    })}
+      
     </>
 
 

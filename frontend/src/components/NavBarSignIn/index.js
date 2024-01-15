@@ -1,4 +1,4 @@
-import React from 'react'
+import React,{useContext} from 'react'
 import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/Container';
 import Form from 'react-bootstrap/Form';
@@ -6,14 +6,26 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import Offcanvas from 'react-bootstrap/Offcanvas';
+import imgLogo from '../images/Swap-logos_black.png'
+import './style.css'
+import { UserContext } from '../../App';
 
 const NavBarSignIn = () => {
+  const {setToken, setIsLoggedIn} = useContext(UserContext);
+
+  const logout = ()=>{
+    setToken(null);
+    setIsLoggedIn(false);
+    localStorage.clear();
+}
   return (
     <>
       
         <Navbar className="bg-body-tertiary mb-3">
           <Container fluid>
-            <Navbar.Brand href="#">Navbar Offcanvas</Navbar.Brand>
+            <Navbar.Brand href="/Home">
+            <img src={imgLogo} className="Logo"/>
+            </Navbar.Brand>
             <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-xl`} />
             <Navbar.Offcanvas
               id={`offcanvasNavbar-expand-xl`}
@@ -27,13 +39,15 @@ const NavBarSignIn = () => {
               </Offcanvas.Header>
               <Offcanvas.Body>
                 <Nav className="justify-content-end flex-grow-1 pe-3">
-                  <Nav.Link href="#action1">Home</Nav.Link>
-                  <Nav.Link href="#action2">Link</Nav.Link>
+                  <Nav.Link href="/orders">Orders</Nav.Link>
+                  <Nav.Link href="/users/login" onClick={()=>{
+                    logout()
+                  }} >Sign Out</Nav.Link>
                   <NavDropdown
-                    title="Dropdown"
+                    title="Check more"
                     id={`offcanvasNavbarDropdown-expand-xl`}
                   >
-                    <NavDropdown.Item href="#action3">Action</NavDropdown.Item>
+                    <NavDropdown.Item href="/Home">Items</NavDropdown.Item>
                     <NavDropdown.Item href="#action4">
                       Another action
                     </NavDropdown.Item>
