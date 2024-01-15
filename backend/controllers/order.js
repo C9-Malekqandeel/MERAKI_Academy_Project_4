@@ -72,11 +72,11 @@ const getOrders= (req,res)=>{
 
     const userId = req.token.userId
 
-    orderModel.find({user:userId}).populate("user").exec().then((result)=>{
+    orderModel.find({user:userId}).populate("user").populate("item").exec().then((result)=>{
         res.status(200).json({
             success:true,
             message:`order view`,
-            item:result
+            order:result
         })
     }).catch((err)=>{
         res.status(500).json({
