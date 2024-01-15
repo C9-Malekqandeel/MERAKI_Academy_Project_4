@@ -16,7 +16,7 @@ itemRouter.get('/random',getAllItemRandom);
 
 itemRouter.get('/item/:name',getItemsByName);
 
-itemRouter.get('/user/:id',getItemByUser);
+itemRouter.get('/user/:id',authentication,getItemByUser);
 
 itemRouter.post('/comments/:item',authentication,createNewComment);
 

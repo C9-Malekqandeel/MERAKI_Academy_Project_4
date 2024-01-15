@@ -118,12 +118,14 @@ const getItemsByName=(req,res)=>{
 const getItemByUser =(req,res)=>{
     const id = req.params.id;
 
-    console.log(id);
+    console.log(req.token);
     ItemModel.find({user:id}).then((result)=>{
+       
         res.status(200).json({
             success:true,
             message:`items`,
-            item:result
+            item:result,
+            user:req.token
         })
     }).catch((err)=>{
         res.status(500).json({
