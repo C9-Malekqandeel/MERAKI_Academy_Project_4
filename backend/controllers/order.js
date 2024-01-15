@@ -68,10 +68,30 @@ const deleteOrder = (req,res)=>{
     })
 }
 
+const getOrders= (req,res)=>{
+
+    const userId = req.token.userId
+
+    orderModel.find({user:userId}).populate("user").exec().then((result)=>{
+        res.status(200).json({
+            success:true,
+            message:`order view`,
+            item:result
+        })
+    }).catch((err)=>{
+        res.status(500).json({
+            success:false,
+            message:"Server Error",
+            err:err.message
+        })
+    })
+}
+
 
 module.exports = {
     createOrder,
     updateOrderForCheckout,
-    deleteOrder
+    deleteOrder,
+    getOrders
 
 }
