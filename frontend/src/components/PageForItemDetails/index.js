@@ -13,6 +13,9 @@ import Card from 'react-bootstrap/Card';
 import { UserContext } from '../../App';
 import Form from 'react-bootstrap/Form';
 import InputGroup from 'react-bootstrap/InputGroup';
+import CreateComment from '../CreateComment';
+import Closure from '../Closure';
+import { useNavigate } from 'react-router-dom';
 
 
 
@@ -27,6 +30,8 @@ const PageForItemDetails = () => {
     const [show, setShow] = useState(true);
     const [comment, setComment] = useState("")
 
+    const navigate = useNavigate();
+
     //! will be used context from App itemId
 
     useEffect(()=>{
@@ -40,7 +45,7 @@ const PageForItemDetails = () => {
 
     const createComment= (data)=>{
         axios.post(`http://localhost:5000/items/comments/add/${data}`,{
-            comment:comment,
+            comment,
             user:userId,
         },
         {
@@ -128,20 +133,7 @@ const PageForItemDetails = () => {
         <h3>
         Comments <Badge bg="secondary">let leave Your Feedback Here!</Badge>
       </h3>
-        {/* {elem.comments.map((elem,i)=>{
-            return <>
-            <Card border="primary" style={{ width: '18rem' }}>
-        <Card.Header>Comments </Card.Header>
-        <Card.Body>
-          <Card.Title>Comment : {i+1}</Card.Title>
-          <Card.Text>
-            {elem}
-          </Card.Text>
-        </Card.Body>
-      </Card>
-            </>
-        })} */}
-
+      <CreateComment item={elem.comments} read={comment} />
         <InputGroup className="mb-3">
         <Form.Control
           placeholder="Recipient's username"
@@ -153,6 +145,8 @@ const PageForItemDetails = () => {
         />
         <Button variant="outline-secondary" id="button-addon2" onClick={()=>{
             createComment(elem._id)
+            //navigate(`/item/${elem._id}`);
+            
         }}>
           ADD
         </Button>
@@ -163,6 +157,8 @@ const PageForItemDetails = () => {
         
       </> 
     })}
+
+    <Closure/>
      
     </>
     )
