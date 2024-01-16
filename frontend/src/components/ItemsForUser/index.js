@@ -4,6 +4,7 @@ import { UserContext } from '../../App';
 import Card from 'react-bootstrap/Card';
 import ListGroup from 'react-bootstrap/ListGroup';
 import Button from 'react-bootstrap/Button';
+import Modal from 'react-bootstrap/Modal';
 import ModalForUpdateItem from '../ModalForUpdateItem';
 import UpdateItem from '../UpdateItem';
 import './style.css'
@@ -15,6 +16,10 @@ const ItemsForUser = () => {
     const {userId,token}=useContext(UserContext);
     const [item, setItem] = useState("");
     const [modalShow, setModalShow] = useState("");
+    const [show, setShow] = useState(false);
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
 
     console.log(userId);
 
@@ -79,8 +84,10 @@ const ItemsForUser = () => {
 
         <a variant='primary' className='bn3637 bn38' onClick={()=>{
           DeleteItem(elem._id)
+          handleShow()
         }}> Delete</a>
-            <Button variant="primary" className='bn632-hover bn18' onClick={() => setModalShow(elem._id)}>
+            <Button variant="primary" className='bn632-hover bn18' onClick={() => {setModalShow(elem._id)
+            }}>
         Update
       </Button>
 
@@ -94,6 +101,25 @@ const ItemsForUser = () => {
     </Card>
         </>
     })}
+
+      <Modal
+        show={show}
+        onHide={handleClose}
+        backdrop="static"
+        keyboard={false}
+      >
+        <Modal.Header closeButton>
+          <Modal.Title>Post Deleted</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+        All the details of this item were removed from SWAP; we hope you got your profit.
+                </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleClose}>
+            Confirm
+          </Button>
+        </Modal.Footer>
+      </Modal>
     </ItemContext.Provider>
     </>
   )

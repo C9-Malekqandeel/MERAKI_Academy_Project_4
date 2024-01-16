@@ -5,6 +5,7 @@ import NavBarSignIn from '../NavBarSignIn';
 import Alert from 'react-bootstrap/Alert';
 import axios from "axios"
 import Closure from '../Closure';
+import Container from 'react-bootstrap/esm/Container';
 
 
 const Cart = () => {
@@ -29,7 +30,7 @@ const Cart = () => {
 
   const checkout= (id)=>{
     axios.put(`http://localhost:5000/orders/checkout/${id}`,{
-           checkout
+           checkout:true
         }, {
             headers: {
               authorization: `Bearer ${token}`,
@@ -48,7 +49,7 @@ const Cart = () => {
           Are you contact the seller to have these items Or yet!
         </Alert>
     <>
-
+    <Container className='order'>
     {order.map((elem,i)=>{
       return <>
       <Card className="text-center">
@@ -67,17 +68,20 @@ const Cart = () => {
             -location:{elem.user.location}
           </p>
         </Card.Text>
-        <Button variant="primary" onClick={()=>{
+        <Card.Text>
+        <a variant="primary" className='bn39' onClick={()=>{
           checkout(elem._id)
 
-        }} >Checkout Here!</Button>
+        }} ><span class="bn39span">checkout</span></a>
+        </Card.Text>
       </Card.Body>
-      <Card.Footer className="text-muted">2 days ago</Card.Footer>
+      <Card.Footer className="text-muted">Don't lose it</Card.Footer>
     </Card>
 
         
       </>
     })}
+    </Container>
       
     </>
 
