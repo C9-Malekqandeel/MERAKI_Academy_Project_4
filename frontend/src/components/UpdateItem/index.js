@@ -90,13 +90,13 @@ function UpdateItem({id}) {
         </Row>
 
       <Form.Group className="mb-3" id="formGridCheckbox">
-        <Form.Check type="checkbox" label="Check me out" />
+        <Form.Check type="checkbox" label="Confirm please here!" />
       </Form.Group>
 
       <Button variant="primary" onClick={()=>{
         UpdateItemForUser()
       }}>
-        Post 
+        Update 
       </Button>
     </Form>
   );

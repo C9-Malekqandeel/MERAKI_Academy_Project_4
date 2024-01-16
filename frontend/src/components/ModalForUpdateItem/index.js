@@ -15,7 +15,7 @@ function ModalForUpdateItem(props) {
     >
       <Modal.Header closeButton>
         <Modal.Title id="contained-modal-title-vcenter">
-          Let us Post New Item!
+          You will update all the details of your item.
         </Modal.Title>
       </Modal.Header>
       <Modal.Body>

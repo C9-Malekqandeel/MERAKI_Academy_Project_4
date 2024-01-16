@@ -63,7 +63,7 @@ const ItemsForUser = () => {
       </Card.Body>
       <ListGroup className="list-group-flush">
         <ListGroup.Item>Price: {elem.price} </ListGroup.Item>
-        <ListGroup.Item>category: {elem.category} </ListGroup.Item>
+        <ListGroup.Item>location: {elem.user.location} </ListGroup.Item>
       </ListGroup>
       <Card.Body>
 
@@ -77,11 +77,11 @@ const ItemsForUser = () => {
             {<UpdateItem/>}
         }}> */}
 
-        <Button variant='primary' onClick={()=>{
+        <a variant='primary' className='bn3637 bn38' onClick={()=>{
           DeleteItem(elem._id)
-        }}></Button>
-            <Button variant="primary" onClick={() => setModalShow(elem._id)}>
-        Launch vertically centered modal
+        }}> Delete</a>
+            <Button variant="primary" className='bn632-hover bn18' onClick={() => setModalShow(elem._id)}>
+        Update
       </Button>
 
       <ModalForUpdateItem

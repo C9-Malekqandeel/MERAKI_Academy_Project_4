@@ -4,6 +4,7 @@ import Card from 'react-bootstrap/Card';
 import NavBarSignIn from '../NavBarSignIn';
 import Alert from 'react-bootstrap/Alert';
 import axios from "axios"
+import Closure from '../Closure';
 
 
 const Cart = () => {
@@ -80,7 +81,7 @@ const Cart = () => {
       
     </>
 
-
+    <Closure/>
 
     </>
 

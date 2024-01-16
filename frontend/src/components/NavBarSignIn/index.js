@@ -44,16 +44,16 @@ const NavBarSignIn = () => {
                     logout()
                   }} >Sign Out</Nav.Link>
                   <NavDropdown
-                    title="Check more"
+                    title="Items"
                     id={`offcanvasNavbarDropdown-expand-xl`}
                   >
-                    <NavDropdown.Item href="/Home">Items</NavDropdown.Item>
-                    <NavDropdown.Item href="#action4">
-                      Another action
+                    <NavDropdown.Item href="/Home">Another Items</NavDropdown.Item>
+                    <NavDropdown.Item href="/users/Dashboard">
+                      Your items
                     </NavDropdown.Item>
                     <NavDropdown.Divider />
-                    <NavDropdown.Item href="#action5">
-                      Something else here
+                    <NavDropdown.Item href="/users/Dashboard">
+                      Control Your Posts
                     </NavDropdown.Item>
                   </NavDropdown>
                 </Nav>
