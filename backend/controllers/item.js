@@ -119,7 +119,7 @@ const getItemByUser =(req,res)=>{
     const id = req.params.id;
 
     console.log(req.token);
-    ItemModel.find({user:id}).then((result)=>{
+    ItemModel.find({user:id}).populate('category').populate('user').exec().then((result)=>{
        
         res.status(200).json({
             success:true,
