@@ -10,7 +10,8 @@ import HeadBarHome from "../HeadBarHome";
 import Nav from 'react-bootstrap/Nav';
 import Modal from 'react-bootstrap/Modal';
 import { UserContext } from '../../App';
-
+import Closure from '../Closure';
+import './style.css'
 
 
 const Login = () => {
@@ -67,6 +68,7 @@ onClick={()=>{
     })
       }}*/
   return (
+    <>
     <Form noValidate validated={validated} onSubmit={handleSubmit}>
 
             <HeadBarHome/>
@@ -79,7 +81,6 @@ onClick={()=>{
       <Nav.Link href="/users/login">Login</Nav.Link>
       </Nav.Item>
     </Nav>
-    //! new modals
 
     <div
       className="modal show"
@@ -97,7 +98,7 @@ onClick={()=>{
               placeholder="Email"
               aria-describedby="inputGroupPrepend"
               required
-              //! New Adding
+
               onChange={(e) => {
                 setEmail(e.target.value);
               }}
@@ -118,7 +119,7 @@ onClick={()=>{
               placeholder="Password"
               aria-describedby="inputGroupPrepend"
               required
-              //! New Adding
+
               onChange={(e) => {
                 setPassword(e.target.value);
               }}
@@ -139,7 +140,7 @@ onClick={()=>{
           feedbackType="invalid"
         />
       </Form.Group>
-      <Button
+      <a className='bn31'
        
        
         
@@ -157,13 +158,16 @@ onClick={()=>{
       console.log(err);
     })
       }}
-      >
-        Login
-      </Button>
+      ><span class="bn31span">Login</span>
+        
+      </a>
 
       </Modal.Dialog>
     </div>
     </Form>
+
+    <Closure/>
+    </>
 
   )
 }

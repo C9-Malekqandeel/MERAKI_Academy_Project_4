@@ -8,6 +8,8 @@ import axios from "axios";
 import HeadBarHome from "../HeadBarHome";
 import Nav from 'react-bootstrap/Nav';
 import Modal from 'react-bootstrap/Modal';
+import Closure from "../Closure";
+import './style.css'
 
 
 
@@ -33,6 +35,7 @@ const Register = () => {
   console.log(userName,email);
 
   return (
+    <>
     <Form noValidate validated={validated} onSubmit={handleSubmit}>
 
             <HeadBarHome/>
@@ -45,7 +48,7 @@ const Register = () => {
       <Nav.Link href="/users/login">Login</Nav.Link>
       </Nav.Item>
     </Nav>
-    //! new modals
+
 
     <div
       className="modal show"
@@ -63,7 +66,7 @@ const Register = () => {
               placeholder="Email"
               aria-describedby="inputGroupPrepend"
               required
-              //! New Adding
+
               onChange={(e) => {
                 setEmail(e.target.value);
               }}
@@ -84,7 +87,7 @@ const Register = () => {
               placeholder="Password"
               aria-describedby="inputGroupPrepend"
               required
-              //! New Adding
+
               onChange={(e) => {
                 setPassword(e.target.value);
               }}
@@ -106,7 +109,7 @@ const Register = () => {
               placeholder="Username"
               aria-describedby="inputGroupPrepend"
               required
-              //! New Adding
+
               onChange={(e) => {
                 setUserName(e.target.value);
               }}
@@ -160,7 +163,7 @@ const Register = () => {
           feedbackType="invalid"
         />
       </Form.Group>
-      <Button
+      <a className="bn31"
         type="submit"
         onClick={() => {
           axios.post("http://localhost:5000/users/register", {
@@ -177,13 +180,17 @@ const Register = () => {
               console.log(err);
             });
         }}
-      >
-        Register
-      </Button>
+      ><span class="bn31span">Register</span>
+        
+      </a>
 
       </Modal.Dialog>
     </div>
     </Form>
+
+    <Closure/>
+
+    </>
   );
 };
 
