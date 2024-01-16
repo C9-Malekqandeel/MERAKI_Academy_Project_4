@@ -33,21 +33,24 @@ function Item() {
       <Row>
     {items.map((elem,i)=>{
       return <>
-      <Col xs={{ order: 12 }}>
-      <Card style={{ width: '18rem' }}>
-      <Card.Img variant="top" src={elem.image} />
-      <Card.Body>
+
+<Card className="bg-dark text-white">
+      <Card.Img src="holder.js/100px270" alt="Card image" />
+      <Card.ImgOverlay>
         <Card.Title>{elem.name}</Card.Title>
         <Card.Text>
-          {elem.description}
+        <h3>{elem.description}</h3>
+        <h2>{elem.price}</h2>
         </Card.Text>
+        <Card.Text>
         <Button variant="primary" onClick={()=>{
           setItemId(elem._id);
           navigate(`/item/${elem._id}`);
         }}>Show Item</Button>
-      </Card.Body>
+        </Card.Text>
+      </Card.ImgOverlay>
     </Card>
-    </Col></>
+</>
 
     })}
     </Row>

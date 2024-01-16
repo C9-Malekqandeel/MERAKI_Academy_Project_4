@@ -40,6 +40,8 @@ const HomePage = () => {
         
 
         <Category/>
+
+        
         <Item/>
         {/* <SignInPage/> */}
     </div>
