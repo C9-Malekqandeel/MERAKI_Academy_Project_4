@@ -4,6 +4,19 @@ import Card from 'react-bootstrap/Card';
 import axios from 'axios';
 import { UserContext } from '../../App';
 import { useParams } from 'react-router-dom';
+import NavBarSignIn from '../NavBarSignIn';
+import HeadBarHome from '../HeadBarHome';
+import Closure from '../Closure';
+import Breadcrumb from 'react-bootstrap/Breadcrumb';
+import Container from 'react-bootstrap/esm/Container';
+import Alert from 'react-bootstrap/Alert';
+import { useNavigate } from 'react-router-dom';
+import Modal from 'react-bootstrap/Modal';
+import './style.css'
+
+
+
+
 
 
 
@@ -11,8 +24,20 @@ const ItemPage = () => {
 
     const {id} = useParams();
     console.log(id ,"id");
+    const isLoggedIn=localStorage.getItem("isLoggedIn")
     const {categoryId} = useContext(UserContext);
     const [items, setItems] = useState([]);
+    const {setItemId} = useContext(UserContext);
+    const navigate = useNavigate();
+    const token = localStorage.getItem("token");
+    const user = localStorage.getItem("userId");
+
+
+
+    const [show, setShow] = useState(false);
+
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
 
     useEffect(()=>{
         axios.get(`http://localhost:5000/category/${id}`).then((result)=>{
@@ -27,25 +52,99 @@ const ItemPage = () => {
         })
 
     },[])
+
+    const addToCart = (data)=>{
+      axios.post(`http://localhost:5000/orders/create/${data}`,{
+        user,
+        item:data,
+        checkout:false
+      }, {
+        headers: {
+          authorization: `Bearer ${token}`,
+        }
+      }).then((res)=>{
+        console.log(res);
+  
+      }).catch((err)=>{
+        console.log(err);
+      })
+    };
         
     //console.log(items, ">>items");
   return (
     <>
 
+    {isLoggedIn? <NavBarSignIn/> : <HeadBarHome/>}
+    <Container>
+<br></br>
+<br></br>
+
+    <Breadcrumb>
+      <Breadcrumb.Item href="/Home">Home</Breadcrumb.Item>
+      <Breadcrumb.Item active>
+        Category
+      </Breadcrumb.Item>
+    </Breadcrumb>
+
+    </Container>
+    <br></br>
+
+    
+
+    <Container className='item'>
     {items.length >0 ? items.map((item,i)=>{
-        return <Card style={{ width: '18rem' }}>
-        <Card.Img variant="top" src={item.image} />
+        return <> <Card className="card shadow">
+        <Card.Header>New Item</Card.Header>
+        
         <Card.Body>
+        <Card.Img src={item.image} alt="Card image" />
           <Card.Title>{item.name}</Card.Title>
           <Card.Text>
-            {item.description}
+          <h4>{item.description}</h4>
+          <h4>{item.price}</h4>
           </Card.Text>
-          <Button variant="primary">Showing Item</Button>
-        </Card.Body>
-      </Card>
+          <Card.Text>
+          <a variant="primary" className='bn13' onClick={()=>{
+            setItemId(item._id);
+            navigate(`/item/${item._id}`);
+          }}>Show Item</a>
   
-    }):<p>No</p> }
+          {isLoggedIn && <a className='bn39' onClick={()=>{
+            addToCart(item._id)
+            handleShow()
+          }} >Save it later</a> }
+          </Card.Text>
+  
+          </Card.Body>
+      </Card>
+      <Modal show={show} onHide={handleClose}>
+        <Modal.Header closeButton>
+          <Modal.Title>Great!</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>This item was saved on your cart, make sure to contact the seller as soon as possible!</Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleClose}>
+            Close
+          </Button>
+          <Button variant="primary" onClick={handleClose}>
+            Save Changes
+          </Button>
+        </Modal.Footer>
+      </Modal>
+
+      </>
+  
+    }):
     
+    <Alert variant="warning">
+    There are no items here; start from your side!
+    <Alert.Link href="http://localhost:3000/users/register">Create your account</Alert.Link>
+            </Alert>
+    }
+
+</Container>
+    
+    <Closure/>
     </>
 
 
