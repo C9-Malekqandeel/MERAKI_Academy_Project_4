@@ -3,8 +3,9 @@ import Card from 'react-bootstrap/Card';
 import axios from 'axios'
 import { useEffect,useState,useContext } from 'react';
 import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
+import Accordion from 'react-bootstrap/Accordion';
 import Modal from 'react-bootstrap/Modal';
+import Alert from 'react-bootstrap/Alert';
 import { useNavigate } from 'react-router-dom';
 import { UserContext } from '../../App';
 import './style.css'
@@ -55,8 +56,38 @@ function Item() {
 
   return (
     <>
+    <br></br>
     <Container>
-      <Row>
+    <Accordion defaultActiveKey="0">
+      <Accordion.Item eventKey="0">
+        <Accordion.Header>If you click on Save!</Accordion.Header>
+        <Accordion.Body>
+        The product will be saved in your basket, but it cannot be guaranteed that it will not be purchased from someone else, so it is recommended to contact the seller now and obtain it.
+        </Accordion.Body>
+      </Accordion.Item>
+      <Accordion.Item eventKey="1">
+        <Accordion.Header>Show item</Accordion.Header>
+        <Accordion.Body>
+        You can view additional details about the product and how to contact the seller, including phone numbers and others, in addition to previous user comments on the seller.
+        </Accordion.Body>
+      </Accordion.Item>
+    </Accordion>
+
+    
+    </Container>
+    <br></br>
+    <br>
+    </br>
+    <Container>
+    <Alert  variant="info">
+      New Item was posted HERE!
+
+        </Alert>
+    
+    </Container>
+
+
+    <Container className='item'>
     {items.map((elem,i)=>{
       return <>
 
@@ -104,7 +135,6 @@ function Item() {
 </>
 
     })}
-    </Row>
     </Container>
     </>
   );

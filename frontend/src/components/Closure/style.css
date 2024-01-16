@@ -1,0 +1,18 @@
+.img {
+    display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 25vw;
+  border-radius: 50%;
+}
+.closure{
+    background-image: url('../images/patternpad.png');
+    margin-top: 10vh;
+}
+.test{
+  margin-left: auto;
+  margin-right: auto;
+    font-size:larger;
+    font-style: italic;
+    text-shadow: 120px seagreen solid ;
+}

@@ -8,6 +8,7 @@ import SignInPage from '../SignInPage';
 import Badge from 'react-bootstrap/Badge';
 import NavBarSignIn from '../NavBarSignIn';
 import "./style.css"
+import Closure from '../Closure';
 
 
 
@@ -41,8 +42,10 @@ const HomePage = () => {
 
         <Category/>
 
-        
+
         <Item/>
+
+        <Closure/>
         {/* <SignInPage/> */}
     </div>
   )
