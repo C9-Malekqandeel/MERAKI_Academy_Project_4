@@ -10,6 +10,7 @@ import { useNavigate } from 'react-router-dom';
 import { UserContext } from '../../App';
 import './style.css'
 
+
 function Item() {
 
   const [items, setItems] = useState([]);
@@ -63,6 +64,7 @@ function Item() {
         <Accordion.Header>If you click on Save!</Accordion.Header>
         <Accordion.Body>
         The product will be saved in your basket, but it cannot be guaranteed that it will not be purchased from someone else, so it is recommended to contact the seller now and obtain it.
+        Notes: Needs to sign in to your account.
         </Accordion.Body>
       </Accordion.Item>
       <Accordion.Item eventKey="1">
