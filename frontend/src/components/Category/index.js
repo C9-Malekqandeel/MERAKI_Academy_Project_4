@@ -1,10 +1,12 @@
 import React,{useEffect,useState,useContext} from 'react';
 import axios from 'axios';
 import Button from 'react-bootstrap/Button';
+import Alert from 'react-bootstrap/Alert';
 import Card from 'react-bootstrap/Card';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import Badge from 'react-bootstrap/Badge';
 import './style.css'
 
 import { useNavigate } from 'react-router-dom';
@@ -44,27 +46,31 @@ const Category = () => {
  */
 
   return (
- 
-    <Container /* style={{ display: flex }} */>
+    <>
+    <Container className='box-category'>
+        <br></br>
+    
         
            <Row md={8}>
+           <h3>
+         <Badge bg="secondary">Category</Badge>
+      </h3>
 
     {categoryList.map((elem,i)=>{
         
             return <> 
             
-            <Col>
+            <Col className='card shadow'>
             <Card style={{ width: '18rem' }}>
             <Card.Img variant="top" src={elem.image} />
             <Card.Body>
-            <Card.Title>{elem.name}</Card.Title>
-            <Button variant="primary" onClick={()=>{
+            <a variant="primary" className='category' onClick={()=>{
                 //!navigate
                 setCategoryId(elem._id)
                 navigate(`/category/${elem._id}`)
                 
 
-            }} >Check Items!</Button>
+            }} >{elem.name}</a>
             </Card.Body>
             </Card>
             </Col>
@@ -75,6 +81,7 @@ const Category = () => {
     
     
     </Container>
+    </>
   )
 }
 

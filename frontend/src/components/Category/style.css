@@ -1,5 +1,4 @@
 .row-cols-md-8 {
-    background-color: #e8f8f8;
     overflow: auto;
     white-space: nowrap;
     display: flex;
@@ -17,7 +16,49 @@
   
 .card img{
     height: 25vh;
+    margin-bottom: 5vh;
+    
 }
 .card:hover {
     background-color: #777;
+  }
+
+  .category {
+    position: relative;
+    padding: 1rem 2rem 0.5rem 2.5rem;
+    color: #000000;
+    border: 3px solid #776e62;
+    -webkit-transition: padding 0.3s ease-in-out;
+    transition: padding 0.3s ease-in-out;
+  }
+  
+  .category:before {
+    content: "";
+    position: absolute;
+    top: 0.5rem;
+    left: 0.5rem;
+    z-index: -1;
+    height: 100%;
+    width: 100%;
+    background-color: #ffffff;
+    border-right: 3px solid #ffffff;
+    border-bottom: 3px solid #ffffff;
+    -webkit-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+  }
+  
+  .category:hover {
+    padding: 0.75rem 2.25rem;
+    cursor: pointer;
+  }
+  
+  .category:hover:before {
+    top: 0;
+    left: 0;
+  }
+
+  .box-category{
+    display: grid;
+    grid-template-columns: max-content;
+    overflow: scroll;
   }
