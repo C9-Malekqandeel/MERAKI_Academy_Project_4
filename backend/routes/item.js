@@ -25,7 +25,7 @@ itemRouter.delete("/:item/comments/:id/delete",authentication,deleteComment);
 
 itemRouter.get('/Search',getItemQueryById);
 
-itemRouter.post('/comments/add/:id',authentication,pushCommentToItem)
+itemRouter.post('/comments/add/:id',authentication,pushCommentToItem);
 
 
 
