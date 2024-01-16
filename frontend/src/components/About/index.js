@@ -48,13 +48,19 @@ const index = () => {
 </Container>
 <br></br>
 <br></br>
-<Container >
+<Container className='says' >
 
 <div class="notification">
     <div class="notiglow"></div>
     <div class="notiborderglow"></div>
-    <div class="notititle">Was created by MALEK QANDEEL</div>
-    <div class="notibody">Web Development</div>
+    <div class="notititle">Time is running out! L</div>
+    <div class="notibody">Get ahead of the crowd with our game-changing SWAP.</div>
+  </div>
+  <div class="notification">
+    <div class="notiglow"></div>
+    <div class="notiborderglow"></div>
+    <div class="notititle">Time is running out! </div>
+    <div class="notibody">Brace yourself for SWAP—it’s here!</div>
   </div>
 </Container>
 

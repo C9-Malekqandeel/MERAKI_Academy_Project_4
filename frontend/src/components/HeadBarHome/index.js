@@ -20,14 +20,14 @@ function HeadBarHome() {
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="me-auto">
             <Nav.Link href="/About">About</Nav.Link>
-            <Nav.Link href="/Details">How it works</Nav.Link>
+            <Nav.Link href="/About">How it works</Nav.Link>
             <NavDropdown title="User" id="collapsible-nav-dropdown">
               <NavDropdown.Item href="/users/register">Register</NavDropdown.Item>
               <NavDropdown.Item href="/users/login">
                 login
               </NavDropdown.Item>
               <NavDropdown.Divider />
-              <NavDropdown.Item href="/Details">
+              <NavDropdown.Item href="/About">
                 How can you benefit!
               </NavDropdown.Item>
             </NavDropdown>
