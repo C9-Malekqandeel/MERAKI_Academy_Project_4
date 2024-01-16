@@ -6,6 +6,11 @@ import CreateItem from '../CreateItem';
 import axios from 'axios'
 import Button from 'react-bootstrap/esm/Button';
 import ModalForShowCreateItem from '../ModalForShowCreateItem';
+import Stack from 'react-bootstrap/Stack';
+import Badge from 'react-bootstrap/Badge';
+
+import './style.css'
+
 export const CategoryContext = createContext();
 
 
@@ -33,13 +38,20 @@ const CategoryListForCreateItem = () => {
   return (
     <>
     <CategoryContext.Provider value={category}>
+      <h3>
+        Choose Category to post your item <Badge bg="secondary">New Item!</Badge>
+      </h3>
+
+    <Stack direction="horizontal" gap={3}>
+
         {categoryList.map((elem,i)=>{
             return <>
+            <div className="box">
+
+            <div class="overlay"></div>
+
             <Figure>
-            <Figure.Image
-              width={171}
-              height={180}
-              alt="171x180"
+            <Figure.Image className='circle'
               src={elem.image}
               onClick={()=>{
                 setCategory(elem._id)
@@ -48,24 +60,28 @@ const CategoryListForCreateItem = () => {
               }}
             />
             <Figure.Caption >
-              {elem.name}
-            </Figure.Caption>
-          </Figure>
-          
-          <Button variant="primary" onClick={() => {
+            <Button variant="primary" onClick={() => {
             setModalShow(elem._id) 
             setCategoryId(elem._id)
           }}>
-        Launch vertically centered modal
+        {elem.name}
       </Button>
+            </Figure.Caption>
+
+           
+          </Figure>
+          
+          
 
       <ModalForShowCreateItem
         show={modalShow} category={elem._id}
         onHide={() => setModalShow(false)}
       />
+      </div>
           </>
 
         })}
+        </Stack>
     </CategoryContext.Provider>
 
     </>

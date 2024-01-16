@@ -5,6 +5,8 @@ import Row from 'react-bootstrap/Row';
 import axios from 'axios';
 import { useContext, useEffect ,useState} from 'react';
 import { UserContext } from '../../App';
+import Alert from 'react-bootstrap/Alert';
+
 import { CategoryContext } from '../CategoryListForCreateItem.js';
 
 function CreateItem({id}) {
@@ -15,6 +17,7 @@ function CreateItem({id}) {
     const [description, setDescription] = useState("");
     const [price, setPrice] = useState("");
     const [categories, setCategories] = useState([]);
+    const [alert, setAlert] = useState(false);
     
     
     const [comment, setComment] = useState([])
@@ -39,6 +42,8 @@ function CreateItem({id}) {
 
 
   return (
+    <>
+  
     <Form>
       <Row className="mb-3">
         <Form.Group as={Col} controlId="formGridEmail">
@@ -112,6 +117,7 @@ function CreateItem({id}) {
           },
         }).then((res)=>{
             console.log(res.data);
+            setAlert(true)
             //
         }).catch((err)=>{
             console.log(err);
@@ -119,7 +125,11 @@ function CreateItem({id}) {
       }}>
         Post 
       </Button>
+      {alert && <> <Alert variant="warning">
+          Great! your item was posted.
+        </Alert> </> }
     </Form>
+    </>
   );
 }
 
