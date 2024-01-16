@@ -96,7 +96,9 @@ const ItemPage = () => {
     <Container className='item'>
     {items.length >0 ? items.map((item,i)=>{
         return <> <Card className="card shadow">
-        <Card.Header>New Item</Card.Header>
+        <Card.Header>
+          <h3>New Item</h3>
+        </Card.Header>
         
         <Card.Body>
         <Card.Img src={item.image} alt="Card image" />

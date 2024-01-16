@@ -94,7 +94,7 @@ function Item() {
       return <>
 
 <Card className="card shadow">
-      <Card.Header>New Item</Card.Header>
+      <Card.Header><h4>New Item</h4> </Card.Header>
       
       <Card.Body>
       <Card.Img src={elem.image} alt="Card image" />
@@ -106,6 +106,7 @@ function Item() {
         <Card.Text>
         <a variant="primary" className='bn13' onClick={()=>{
           setItemId(elem._id);
+          localStorage.setItem("itemId",elem._id)
           navigate(`/item/${elem._id}`);
         }}>Show Item</a>
 

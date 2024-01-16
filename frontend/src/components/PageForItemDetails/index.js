@@ -18,7 +18,8 @@ import InputGroup from 'react-bootstrap/InputGroup';
 
 
 const PageForItemDetails = () => {
-    const {id} = useParams();
+    const {id} = useParams() || localStorage.getItem("itemId");
+    
     const [item, setItem] = useState([])
     const {token}=useContext(UserContext);
     const userId = localStorage.getItem("userId")
@@ -31,14 +32,14 @@ const PageForItemDetails = () => {
     useEffect(()=>{
         axios.get(`http://localhost:5000/items/item/${id}`).then((result)=>{
             console.log("data",result.data.item);
-            setItem(result.data.item)
-        }).then((err)=>{
+            setItem([...item,...result.data.item])
+        }).catch((err)=>{
             console.log(err);
     })
     },[]);
 
     const createComment= (data)=>{
-        axios.post(`http://localhost:5000/items/comments/${data}`,{
+        axios.post(`http://localhost:5000/items/comments/add/${data}`,{
             comment:comment,
             user:userId,
         },
@@ -56,11 +57,13 @@ const PageForItemDetails = () => {
     console.log("token",token);
     console.log("userId",userId);
     console.log("comment",comment);
+    console.log(id);
     console.log(item[0]);
 
   return (
     <>
     <HeadBarHome/>
+    
     {item.map((elem,i)=>{
         return<>
         <Container>
@@ -125,7 +128,7 @@ const PageForItemDetails = () => {
         <h3>
         Comments <Badge bg="secondary">let leave Your Feedback Here!</Badge>
       </h3>
-        {elem.comments.map((elem,i)=>{
+        {/* {elem.comments.map((elem,i)=>{
             return <>
             <Card border="primary" style={{ width: '18rem' }}>
         <Card.Header>Comments </Card.Header>
@@ -137,7 +140,7 @@ const PageForItemDetails = () => {
         </Card.Body>
       </Card>
             </>
-        })}
+        })} */}
 
         <InputGroup className="mb-3">
         <Form.Control
@@ -160,7 +163,7 @@ const PageForItemDetails = () => {
         
       </> 
     })}
-    
+     
     </>
     )
 }
