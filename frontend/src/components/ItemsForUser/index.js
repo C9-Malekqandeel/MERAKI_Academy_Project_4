@@ -6,6 +6,7 @@ import ListGroup from 'react-bootstrap/ListGroup';
 import Button from 'react-bootstrap/Button';
 import ModalForUpdateItem from '../ModalForUpdateItem';
 import UpdateItem from '../UpdateItem';
+import './style.css'
 
 export const ItemContext = createContext();
 
@@ -52,7 +53,7 @@ const ItemsForUser = () => {
         console.log(elem);
         return <>
         
-        <Card style={{ width: '18rem' }}>
+        <Card style={{ width: '18rem' }} className="card shadow" >
       <Card.Img variant="top" src="holder.js/100px180?text=Image cap" />
       <Card.Body>
         <Card.Title>{elem.name} </Card.Title>

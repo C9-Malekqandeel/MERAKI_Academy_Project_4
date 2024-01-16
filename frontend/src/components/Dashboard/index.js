@@ -7,6 +7,8 @@ import CreateItem from '../CreateItem';
 import Category from '../Category';
 import CategoryListForCreateItem from '../CategoryListForCreateItem.js';
 import ItemsForUser from '../ItemsForUser/index.js';
+import Closure from '../Closure/index.js';
+import Container from 'react-bootstrap/esm/Container.js';
 
 
 
@@ -44,7 +46,18 @@ const Dashboard = () => {
         </Alert>
     
     <CategoryListForCreateItem/>
+
+<br></br>
+    <Alert  variant='secondary'>
+          Check your items from HERE!
+        </Alert>
+        
+        <Container>
     <ItemsForUser/>
+    </Container>
+
+
+    <Closure/>
 
 
         </>

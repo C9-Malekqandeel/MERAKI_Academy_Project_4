@@ -60,6 +60,7 @@ const Cart = () => {
           <p>Description of Item : {elem.item.description} </p>
           <p>
             Seller's Details : 
+            </p><p>
             -Name:{elem.user.userName}
             -Contact:{elem.user.contact}
             -location:{elem.user.location}

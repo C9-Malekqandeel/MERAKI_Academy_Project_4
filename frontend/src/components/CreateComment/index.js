@@ -4,14 +4,11 @@ import ListGroup from 'react-bootstrap/ListGroup';
 
 const CreateComment = ({item,read}) => {
 
-    console.log("item",item[0].comment);
-
-    
 
   return (
 
     <>
-    {item.map((elem,i)=>{
+    {item.length>0 && item.map((elem,i)=>{
         return <>
         <ListGroup as="ul">
       <ListGroup.Item as="li" disabled>
