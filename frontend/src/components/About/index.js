@@ -31,46 +31,31 @@ const index = () => {
     <br></br>
 <Container>
 
-<div ClName="cards">
-    <div ClName="card red">
-    <h2 ClName='tip'>
-   The best way to get money is through trade and sale, and this is the basis of the Swap Store.
-   </h2>
+<div className="cards">
+    <div className="card red">
+        <p className="tip">Opportunity </p>
+        <p className="second-text">   The best way to get money is through trade and sale, and this is the basis of the Swap Store.</p>
     </div>
-    <div Cl="card blue">
-    <h3 >
-    The sale process takes place by communicating with the seller directly via the phone number and registered website.
-    </h3>
+    <div className="card blue">
+        <p className="tip">How does it work?</p>
+        <p className="second-text">    The sale process takes place by communicating with the seller directly via the phone number and registered website.</p>
     </div>
-    <div Cl="card green">
-        <p Cl="tip">Hover Me</p>
-        <p Cl="second-text">Lorem Ipsum</p>
+    <div className="card green">
+        <p className="tip">How can you benefit?</p>
+        <p className="second-text">You can publish your product on the site, and within a short period of time, site visitors will contact you to make a purchase and provide details about the product.</p>
     </div>
 </div>
+</Container>
+<br></br>
+<br></br>
+<Container >
 
-    {/* <div Cl="main">
-  <div Cl="card" id="c1">
-   <h2>
-   The best way to get money is through trade and sale, and this is the basis of the Swap Store.
-   </h2>
+<div class="notification">
+    <div class="notiglow"></div>
+    <div class="notiborderglow"></div>
+    <div class="notititle">Was created by MALEK QANDEEL</div>
+    <div class="notibody">Web Development</div>
   </div>
-  <div Cl="card" id="c2">
-    <h3>
-    The sale process takes place by communicating with the seller directly via the phone number and registered website.
-    </h3>
-  </div>
-  <div Cl="card" id="c3">
-    <h4>
-    You can publish your product on the site, and within a short period of time, site visitors will contact you to make a purchase and provide details about the product.
-    </h4>
-  </div>
-  
-  <div Cl="card" id="c4">
-  <h4>
-  You can publish your product on the site, and within a short period of time, site visitors will contact you to make a purchase and provide details about the product.
-  </h4>
-  </div>
-</div> */}
 </Container>
 
 <Closure/>
