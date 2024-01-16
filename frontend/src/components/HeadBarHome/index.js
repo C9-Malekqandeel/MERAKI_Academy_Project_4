@@ -11,7 +11,7 @@ import './style.css'
 function HeadBarHome() {
     //const {isLoggedIn} = useContext(UserContext)
   return (
-    <Navbar collapseOnSelect expand="lg" className="bg-body-tertiary">
+    <Navbar collapseOnSelect expand="lg" className="bar">
       <Container>
         <Navbar.Brand href="/home">
             <img src={imgLogo} className="Logo"/>

@@ -1,7 +1,7 @@
-.img-thumbnail{
-    width: 50vw;
-    height: 90vh;
-}
-.img-fluid{
-    width:100;
+.col-md-4 img{
+    width: 40vw;
+    height: 120vh;
+    -webkit-box-shadow:0px 0px 183px 95px #C4CEFF;
+    -moz-box-shadow: 0px 0px 183px 95px #C4CEFF;
+    box-shadow: 0px 0px 183px 95px #C4CEFF;
 }
