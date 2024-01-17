@@ -65,7 +65,7 @@ const getData=()=>
         return <>
         
         <Card style={{ width: '18rem' }} className="card shadow" >
-      <Card.Img variant="top" src="holder.js/100px180?text=Image cap" />
+      <Card.Img variant="top" className='line' src={elem.image} />
       <Card.Body>
         <Card.Title>{elem.name} </Card.Title>
         <Card.Text>

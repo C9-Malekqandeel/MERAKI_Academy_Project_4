@@ -100,4 +100,8 @@
 
    }
    
-   
+   .card img{
+    width: 35vw;
+    height: 25vh;
+    overflow: hidden;
+   }

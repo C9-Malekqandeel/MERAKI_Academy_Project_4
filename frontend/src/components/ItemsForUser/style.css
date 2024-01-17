@@ -83,3 +83,8 @@
   .bn38:hover {
     background-color: #60605e;
   }
+
+  .card img{
+    margin-left: 0;
+    width: auto;
+  }
