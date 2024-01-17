@@ -12,18 +12,24 @@ const Cart = () => {
   const userId = localStorage.getItem("userId");
   const [order, setOrder] = useState([])
   const token = localStorage.getItem("token");
+  const [completed, setCompleted] = useState(false);
 
-  useEffect(()=>{
+  const getData=()=>{
     axios.get(`http://localhost:5000/orders/user/${userId}`,{
       headers: {
         authorization: `Bearer ${token}`,
       },
     }).then((res)=>{ 
-      console.log(res.data.order);
-      setOrder([...order,...res.data.order])
+      console.log("res",res.data.order);
+      setOrder(res.data.order)
   }).catch((err)=>{
       console.log(err);
   })
+
+  }
+
+  useEffect(()=>{
+    getData()
   },[]);
 
   console.log(order);
@@ -37,6 +43,8 @@ const Cart = () => {
             },
           }).then((res)=>{
             console.log(res);
+            getData()
+            
             // get date
             /// hof >> map 
             
@@ -74,10 +82,12 @@ const Cart = () => {
           </p>
         </Card.Text>
         <Card.Text>
+          { !elem.checkout ?
         <a variant="primary" className='bn39' onClick={()=>{
           checkout(elem._id)
-
-        }} ><span class="bn39span">checkout</span></a>
+        }} ><span class="bn39span">checkout</span></a> : <button type="button" class="btn btn-secondary" data-toggle="tooltip" data-placement="top" title="Done!Check it out with the seller.">
+        completed
+      </button> }
         </Card.Text>
       </Card.Body>
       <Card.Footer className="text-muted">Don't lose it</Card.Footer>
