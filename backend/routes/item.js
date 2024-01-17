@@ -1,5 +1,5 @@
 const express = require('express');
-const {createItemByUser,updateItemByUser, deleteItemByUser, getAllItemRandom, getItemsByName, getItemByUser, createNewComment, updateComment, deleteComment, getItemQueryById, pushCommentToItem} = require("../controllers/item");
+const {createItemByUser,updateItemByUser, deleteItemByUser, getAllItemRandom, getItemsByName, getItemByUser, createNewComment, updateComment, deleteComment, getItemQueryById, pushCommentToItem, getFeedBackItem} = require("../controllers/item");
 
 const authentication = require('../middleware/authentication')
 const authorization = require('../middleware/authorization')
@@ -26,6 +26,7 @@ itemRouter.delete("/:item/comments/:id/delete",authentication,deleteComment);
 itemRouter.get('/Search',getItemQueryById);
 
 itemRouter.post('/comments/add/:id',authentication,pushCommentToItem);
+itemRouter.get('/feedback/:id',getFeedBackItem)
 
 
 

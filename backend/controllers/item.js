@@ -278,6 +278,31 @@ const pushCommentToItem=(req,res)=>{
         })});
 }
 
+const getFeedBackItem = (req,res)=>{
+
+    const itemId = req.params.id
+
+    ItemModel.find({_id:itemId}).populate({path:"comments"}).then((result)=>{
+        if(!result){
+            return res.status(403).json({
+                success:false,
+                message:"Item not found"
+            })
+        }
+
+        res.status(200).json({
+            success:true,
+            message:`comment`,
+            comment:result[0].comments
+        })
+    }).catch((err)=>{
+        res.status(500).json({
+            success:false,
+            message:"Server Error",
+            err:err.message
+        })
+    })
+}
 
 // On Dashboard's User will be related to token directly but the home page will be related to params.//!Done
 // will be order using every functions here then delete and update//!Done
@@ -297,5 +322,6 @@ module.exports={
     deleteComment,
     getItemQueryById,
     pushCommentToItem,
+    getFeedBackItem
 
 }
