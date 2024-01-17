@@ -154,3 +154,9 @@
     display: grid;
     grid-template-columns: auto auto;
   }
+
+  .line{
+margin-left: 15vw;
+font-size: larger;
+
+}

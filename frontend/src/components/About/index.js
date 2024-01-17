@@ -15,20 +15,18 @@ const index = () => {
   return (
     <>
     {isLoggedIn? <NavBarSignIn/> : <HeadBarHome/>}
-
-    <Container>
 <br></br>
 <br></br>
 
-    <Breadcrumb>
+    <Breadcrumb className='line'>
       <Breadcrumb.Item href="/Home">Home</Breadcrumb.Item>
       <Breadcrumb.Item active>
         Details
       </Breadcrumb.Item>
     </Breadcrumb>
 
-    </Container>
     <br></br>
+
 <Container>
 
 <div className="cards">

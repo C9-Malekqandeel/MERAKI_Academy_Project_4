@@ -59,6 +59,7 @@ function Item() {
     <>
     <br></br>
     <Container>
+      
     <Accordion defaultActiveKey="0">
       <Accordion.Item eventKey="0">
         <Accordion.Header>If you click on Save!</Accordion.Header>
@@ -80,12 +81,20 @@ function Item() {
     <br></br>
     <br>
     </br>
+
     <Container>
-    <Alert  variant="info">
+    <Alert  variant="info" >
       New Item was posted HERE!
 
         </Alert>
-    
+        <Alert  variant="info" >
+        You can save it later if you are logged in to your account.
+
+        </Alert>
+        <Alert  variant="info" >
+      Welcome to Swap!
+
+        </Alert>
     </Container>
 
 

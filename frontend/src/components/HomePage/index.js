@@ -38,7 +38,7 @@ const HomePage = () => {
 
         <Slides/>
 
-        
+        <br></br>
 
         <Category/>
 

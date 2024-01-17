@@ -1,5 +1,6 @@
 import Carousel from 'react-bootstrap/Carousel';
 import Container from 'react-bootstrap/Container';
+import './style.css'
 
 
 function Slides() {
@@ -12,9 +13,9 @@ function Slides() {
           src="https://img.freepik.com/free-photo/cyber-monday-shopping-sales_23-2148688502.jpg?size=626&ext=jpg&ga=GA1.2.1116360010.1699996058&semt=sph"
           alt="First slide"
         />
-        <Carousel.Caption>
-          <h1>Leave your mark here!</h1>
-          <h3>It's your chance to be a trader</h3>
+        <Carousel.Caption >
+          <h1 className='test'>Leave your mark here!</h1>
+          <h3 className='test1'>It's your chance to be a trader</h3>
         </Carousel.Caption>
       </Carousel.Item>
       <Carousel.Item  className="d-block w-100">
@@ -24,8 +25,8 @@ function Slides() {
           alt="Second slide"
         />
         <Carousel.Caption>
-        <h1>Your first step to trading!</h1>
-          <h3>It's your chance to be a trader</h3>
+        <h1 className='test'>Your first step to trading!</h1>
+          <h3 className='test1'>It's your chance to be a trader</h3>
         </Carousel.Caption>
       </Carousel.Item>
       <Carousel.Item>
@@ -34,8 +35,8 @@ function Slides() {
           src="https://img.freepik.com/premium-photo/globe-surrounded-by-cardboard-boxes-as-image-global-business-logistics_124507-58021.jpg?w=740"
         />
         <Carousel.Caption>
-        <h1>Leave your mark here!</h1>
-          <h3>It's your chance to be a trader</h3>
+        <h1 className='test'>Leave your mark here!</h1>
+          <h3 className='test1'>It's your chance to be a trader</h3>
         </Carousel.Caption>
       </Carousel.Item>
     </Carousel>

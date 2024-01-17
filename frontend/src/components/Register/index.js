@@ -10,10 +10,12 @@ import Nav from 'react-bootstrap/Nav';
 import Modal from 'react-bootstrap/Modal';
 import Closure from "../Closure";
 import './style.css'
+import { useNavigate } from "react-router-dom";
 
 
 
 const Register = () => {
+  const navigate = useNavigate();
   const [userName, setUserName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -72,7 +74,7 @@ const Register = () => {
               }}
             />
             <Form.Control.Feedback type="invalid">
-              Please choose a username.
+              Please choose a Email.
             </Form.Control.Feedback>
           </InputGroup>
         </Form.Group>
@@ -80,7 +82,7 @@ const Register = () => {
       
       <Row className="mb-3">
         <Form.Group as={Col} md="6" controlId="validationCustomUsername">
-          <Form.Label>Username</Form.Label>
+          <Form.Label>Password</Form.Label>
           <InputGroup hasValidation>
             <Form.Control
               type="password"
@@ -101,7 +103,7 @@ const Register = () => {
 
       <Row className="mb-3">
         <Form.Group as={Col} md="6" controlId="validationCustomUsername">
-          <Form.Label>Username</Form.Label>
+          <Form.Label>Your Name</Form.Label>
           <InputGroup hasValidation>
             <InputGroup.Text id="inputGroupPrepend">@</InputGroup.Text>
             <Form.Control
@@ -174,6 +176,7 @@ const Register = () => {
               location,
             })
             .then((res) => {
+              navigate('/users/login')
               console.log(res);
             })
             .catch((err) => {

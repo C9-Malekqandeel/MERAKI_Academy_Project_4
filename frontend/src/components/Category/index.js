@@ -50,7 +50,7 @@ const Category = () => {
     <Container className='box-category'>
     
         
-           <Row md={8}>
+           <Row md={16}>
            <h3>
          <Badge bg="secondary">Category</Badge>
       </h3>
@@ -62,7 +62,7 @@ const Category = () => {
             return <> 
             
             
-            <Col className='card shadow'>
+            <Col className='card'>
             <Card style={{ width: '18rem' }}>
             <Card.Img variant="top" src={elem.image} />
             <Card.Body>
