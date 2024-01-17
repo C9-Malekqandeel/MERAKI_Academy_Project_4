@@ -37,3 +37,11 @@
   .bn39:hover .bn39span {
     background: #365486;
   }
+
+.completed{
+  background-color: #0F1035;
+}
+
+.not-completed{
+  background-color: #86d472;
+}

@@ -29,15 +29,22 @@ const PageForItemDetails = () => {
 
     const [show, setShow] = useState(true);
     const [comment, setComment] = useState("")
+    const [comments, setComments] = useState([]);
 
     const navigate = useNavigate();
+
+
+  
 
     //! will be used context from App itemId
 
     useEffect(()=>{
         axios.get(`http://localhost:5000/items/item/${id}`).then((result)=>{
-            console.log("data",result.data.item);
-            setItem([...item,...result.data.item])
+            console.log("data",result.data.item?.comments);
+            setItem([...item,...result.data.item]);
+            // setComments(result.data.item?.comments);
+
+
         }).catch((err)=>{
             console.log(err);
     })
@@ -53,32 +60,55 @@ const PageForItemDetails = () => {
                 authorization: `Bearer ${token}`,
             },
         }).then((res)=>{
-            console.log("true", res);
+          getAllComments()
+            console.log("true", res.data.comment);
+          
         }).catch((err)=>{
             console.log(err);
         })
     }
+
+    const getAllComments = ()=>{
+      console.log("result")
+      axios.get(`http://localhost:5000/items/feedback/${id}`).then((result)=>{
+  
+        console.log("result",result.data.comment);
+  
+        setComments(result.data.comment)
+  
+    }).catch((err)=>{
+        console.log(err);
+    })
+    }
+  
 
     console.log("token",token);
     console.log("userId",userId);
     console.log("comment",comment);
     console.log(id);
     console.log(item[0]);
+    
 
   return (
     <>
     <HeadBarHome/>
+    <br></br>
     
     {item.map((elem,i)=>{
         return<>
+
         <Container>
-      <Row>
+        <Row>
         <Col>
         <h2>
         <Badge bg="secondary">{elem.name} </Badge>
       </h2>
+
         </Col>
       </Row>
+        </Container>
+        <Container>
+    
       <Row>
         <Col>
         <Image src={elem.image} fluid />;
@@ -128,12 +158,14 @@ const PageForItemDetails = () => {
       </Row>
 
 
-      <Row>
-        <Col>
+      
+    </Container>
+    <Container>
+    <Row>
         <h3>
         Comments <Badge bg="secondary">let leave Your Feedback Here!</Badge>
       </h3>
-      <CreateComment item={elem.comments} read={comment} />
+      <CreateComment item={elem.comments} read={comment}  comments={comments} />
         <InputGroup className="mb-3">
         <Form.Control
           placeholder="Recipient's username"
@@ -143,16 +175,19 @@ const PageForItemDetails = () => {
             setComment(e.target.value)
           }}
         />
+        
         <Button variant="outline-secondary" id="button-addon2" onClick={()=>{
             createComment(elem._id)
+            //getAllComments()
+            
             //navigate(`/item/${elem._id}`);
             
         }}>
           ADD
         </Button>
       </InputGroup>
-        </Col>
       </Row>
+
     </Container>
         
       </> 

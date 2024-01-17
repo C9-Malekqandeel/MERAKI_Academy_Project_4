@@ -22,9 +22,10 @@ function App() {
     const [userId, setUserId] = useState(""|| localStorage.getItem("userId"));
     const [itemId, setItemId] = useState("");
     const [categoryId, setCategoryId] = useState("")
+    const [itemsUser, setItemsUser] = useState([]);
 
   return (
-    <UserContext.Provider value={{token,setToken,isLoggedIn,setIsLoggedIn,userId,setUserId,itemId,setItemId,categoryId,setCategoryId}}>
+    <UserContext.Provider value={{token,setToken,isLoggedIn,setIsLoggedIn,userId,setUserId,itemId,setItemId,categoryId, itemsUser,setItemsUser,setCategoryId}}>
 
     <Routes>
 

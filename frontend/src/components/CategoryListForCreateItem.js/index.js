@@ -60,6 +60,7 @@ const CategoryListForCreateItem = () => {
               }}
             />
             <Figure.Caption >
+              
             <a variant="primary" className='bn5' onClick={() => {
             setModalShow(elem._id) 
             setCategoryId(elem._id)

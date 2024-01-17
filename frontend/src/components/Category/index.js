@@ -48,7 +48,6 @@ const Category = () => {
   return (
     <>
     <Container className='box-category'>
-        <br></br>
     
         
            <Row md={8}>
@@ -56,9 +55,12 @@ const Category = () => {
          <Badge bg="secondary">Category</Badge>
       </h3>
 
+      <Row className='category-line'>
+
     {categoryList.map((elem,i)=>{
         
             return <> 
+            
             
             <Col className='card shadow'>
             <Card style={{ width: '18rem' }}>
@@ -74,9 +76,12 @@ const Category = () => {
             </Card.Body>
             </Card>
             </Col>
+
+            
             </>
 
     })}
+    </Row>
     </Row>
     
     

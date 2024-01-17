@@ -37,6 +37,9 @@ const Cart = () => {
             },
           }).then((res)=>{
             console.log(res);
+            // get date
+            /// hof >> map 
+            
           }).catch((err)=>{
             console.log(err);
           })
@@ -51,8 +54,10 @@ const Cart = () => {
     <>
     <Container className='order'>
     {order.map((elem,i)=>{
+      console.log(elem.checkout);
       return <>
-      <Card className="text-center">
+      <Card className={elem.checkout?"bg-primary" : "bg-info"}>
+      {/* <Card style{{}}={elem.checkout?"completed" : "not-completed"}> */}
       <Card.Header>Your Order No.{i+1} </Card.Header>
       <Card.Body>
         

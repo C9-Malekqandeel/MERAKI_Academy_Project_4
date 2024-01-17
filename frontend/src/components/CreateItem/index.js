@@ -11,7 +11,6 @@ import { CategoryContext } from '../CategoryListForCreateItem.js';
 
 function CreateItem({id}) {
   console.log(id,"use");
-
     const [name, setName] = useState("");
     const [image, setImage] = useState("");
     const [description, setDescription] = useState("");
@@ -22,7 +21,7 @@ function CreateItem({id}) {
     
     const [comment, setComment] = useState([])
     
-    const {userId,token,categoryId} = useContext(UserContext);
+    const {userId,token,categoryId,setItemsUser} = useContext(UserContext);
 
 
     useEffect(()=>{
@@ -117,6 +116,8 @@ function CreateItem({id}) {
           },
         }).then((res)=>{
             console.log(res.data);
+            const a=[res.data.item]
+            setItemsUser(prev=>[...prev,res.data.item])
             setAlert(true)
             //
         }).catch((err)=>{

@@ -10,9 +10,10 @@ import UpdateItem from '../UpdateItem';
 import './style.css'
 
 export const ItemContext = createContext();
-
+// import { UserContext } from '../../App';
 const ItemsForUser = () => {
-    const [itemsUser, setItemsUser] = useState([]);
+const {itemsUser,setItemsUser}=useContext(UserContext)
+    // const [itemsUser, setItemsUser] = useState([]);
     const {userId,token}=useContext(UserContext);
     const [item, setItem] = useState("");
     const [modalShow, setModalShow] = useState("");
@@ -22,18 +23,21 @@ const ItemsForUser = () => {
   const handleShow = () => setShow(true);
 
     console.log(userId);
-
+const getData=()=>
+{
+  axios.get(`http://localhost:5000/items/user/${userId}`, 
+  {
+    headers: {
+      authorization: `Bearer ${token}`,
+    }}).then((res)=>{
+    console.log(res.data);
+      setItemsUser(res.data.item)
+  }).catch((err)=>{
+      console.log(err);
+  })
+}
     useEffect(()=>{
-        axios.get(`http://localhost:5000/items/user/${userId}`, 
-        {
-          headers: {
-            authorization: `Bearer ${token}`,
-          }}).then((res)=>{
-          console.log(res.data);
-            setItemsUser([...itemsUser,...res.data.item])
-        }).catch((err)=>{
-            console.log(err);
-        })
+       getData()
     },[]);
 
     const DeleteItem= (id)=>{
@@ -43,6 +47,8 @@ const ItemsForUser = () => {
         },
       }).then((res)=>{
         console.log(res);
+        // get date or hof 
+        getData()
       }).catch((err)=>{
         console.log(err);
       })
@@ -86,6 +92,8 @@ const ItemsForUser = () => {
           DeleteItem(elem._id)
           handleShow()
         }}> Delete</a>
+
+
             <Button variant="primary" className='bn632-hover bn18' onClick={() => {setModalShow(elem._id)
             }}>
         Update
