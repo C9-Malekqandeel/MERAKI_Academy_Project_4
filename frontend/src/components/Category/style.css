@@ -1,8 +1,7 @@
 .category-line{
   display: flex;
   flex-wrap: nowrap; 
-  overflow: scroll;
-  gap:9vh
+  overflow: hidden;
 }
 .inline-flex-card {
   display: inline-block;

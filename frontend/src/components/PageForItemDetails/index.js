@@ -132,10 +132,13 @@ const PageForItemDetails = () => {
       <Alert show={show} variant="success">
         <Alert.Heading>Contact</Alert.Heading>
         <p>
-          Name :{elem.user.userName}
+          Name :  {elem.user.userName}
         </p>
         <p>
-        Contact:{elem.user.contact}
+        Contact:  {elem.user.contact}
+        </p>
+        <p>
+        location :  {elem.user.location}
         </p>
         <hr />
         <div className="d-flex justify-content-end">

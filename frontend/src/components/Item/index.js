@@ -106,7 +106,7 @@ function Item() {
       <Card.Header><h4>New Item</h4> </Card.Header>
       
       <Card.Body>
-      <Card.Img src={elem.image} className='card-img' alt="Card image" />
+      <Card.Img src={elem.image} className='card_img' alt="Card image" />
         <Card.Title>{elem.name}</Card.Title>
         <Card.Text>
         <h4>{elem.description}</h4>
