@@ -42,7 +42,7 @@ const ItemPage = () => {
     const handleShow = () => setShow(true);
 
     useEffect(()=>{
-        axios.get(`http://localhost:5000/category/${id}`).then((result)=>{
+        axios.get(`https://swap-fmy1.onrender.com/category/${id}`).then((result)=>{
           console.log("Data",result.data.ItemOfCategory
           );
             setItems(result.data.ItemOfCategory
@@ -56,7 +56,7 @@ const ItemPage = () => {
     },[])
 
     const addToCart = (data)=>{
-      axios.post(`http://localhost:5000/orders/create/${data}`,{
+      axios.post(`https://swap-fmy1.onrender.com/orders/create/${data}`,{
         user,
         item:data,
         checkout:false

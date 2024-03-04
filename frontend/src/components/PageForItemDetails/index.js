@@ -39,7 +39,7 @@ const PageForItemDetails = () => {
     //! will be used context from App itemId
 
     useEffect(()=>{
-        axios.get(`http://localhost:5000/items/item/${id}`).then((result)=>{
+        axios.get(`https://swap-fmy1.onrender.com/items/item/${id}`).then((result)=>{
             console.log("data",result.data.item?.comments);
             setItem([...item,...result.data.item]);
             // setComments(result.data.item?.comments);
@@ -51,7 +51,7 @@ const PageForItemDetails = () => {
     },[]);
 
     const createComment= (data)=>{
-        axios.post(`http://localhost:5000/items/comments/add/${data}`,{
+        axios.post(`https://swap-fmy1.onrender.com/items/comments/add/${data}`,{
             comment,
             user:userId,
         },
@@ -70,7 +70,7 @@ const PageForItemDetails = () => {
 
     const getAllComments = ()=>{
       console.log("result")
-      axios.get(`http://localhost:5000/items/feedback/${id}`).then((result)=>{
+      axios.get(`https://swap-fmy1.onrender.com/items/feedback/${id}`).then((result)=>{
   
         console.log("result",result.data.comment);
   

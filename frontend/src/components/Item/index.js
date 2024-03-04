@@ -26,7 +26,7 @@ function Item() {
 
 
   useEffect(()=>{
-    axios.get(`http://localhost:5000/items/random`).then((res)=>{
+    axios.get(`https://swap-fmy1.onrender.com/items/random`).then((res)=>{
       console.log(res);
       setItems([...items,...res.data.items])
     }).catch((err)=>{
@@ -38,7 +38,7 @@ function Item() {
   console.log(items,"Items");
 
   const addToCart = (data)=>{
-    axios.post(`http://localhost:5000/orders/create/${data}`,{
+    axios.post(`https://swap-fmy1.onrender.com/orders/create/${data}`,{
       user,
       item:data,
       checkout:false

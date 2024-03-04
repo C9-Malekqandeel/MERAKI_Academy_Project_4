@@ -25,7 +25,7 @@ const {itemsUser,setItemsUser}=useContext(UserContext)
     console.log(userId);
 const getData=()=>
 {
-  axios.get(`http://localhost:5000/items/user/${userId}`, 
+  axios.get(`https://swap-fmy1.onrender.com/items/user/${userId}`, 
   {
     headers: {
       authorization: `Bearer ${token}`,
@@ -41,7 +41,7 @@ const getData=()=>
     },[]);
 
     const DeleteItem= (id)=>{
-      axios.delete(`http://localhost:5000/items/delete/${id}`,{
+      axios.delete(`https://swap-fmy1.onrender.com/items/delete/${id}`,{
         headers: {
           authorization: `Bearer ${token}`,
         },

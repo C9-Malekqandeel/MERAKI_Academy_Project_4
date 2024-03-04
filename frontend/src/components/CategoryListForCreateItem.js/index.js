@@ -26,7 +26,7 @@ const CategoryListForCreateItem = () => {
 
 
     useEffect(()=>{
-        axios.get('http://localhost:5000/category').then((result)=>{
+        axios.get('https://swap-fmy1.onrender.com/category').then((result)=>{
             setCategoryList([...categoryList,...result.data.categories])
         }).catch((err)=>{
             console.log(err);

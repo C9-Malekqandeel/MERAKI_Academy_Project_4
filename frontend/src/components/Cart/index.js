@@ -15,7 +15,7 @@ const Cart = () => {
   const [completed, setCompleted] = useState(false);
 
   const getData=()=>{
-    axios.get(`http://localhost:5000/orders/user/${userId}`,{
+    axios.get(`https://swap-fmy1.onrender.com/orders/user/${userId}`,{
       headers: {
         authorization: `Bearer ${token}`,
       },
@@ -35,7 +35,7 @@ const Cart = () => {
   console.log(order);
 
   const checkout= (id)=>{
-    axios.put(`http://localhost:5000/orders/checkout/${id}`,{
+    axios.put(`https://swap-fmy1.onrender.com/orders/checkout/${id}`,{
            checkout:true
         }, {
             headers: {
@@ -76,7 +76,6 @@ const Cart = () => {
           <p>
             Seller's Details : 
             </p><p>
-            -Name:{elem.user.userName}
             -Contact:{elem.user.contact}
             -location:{elem.user.location}
           </p>

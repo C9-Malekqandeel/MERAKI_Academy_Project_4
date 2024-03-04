@@ -25,7 +25,7 @@ function UpdateItem({id}) {
 
     
     const UpdateItemForUser=()=>{
-        axios.put(`http://localhost:5000/items/update/${id}`,{
+        axios.put(`https://swap-fmy1.onrender.com/items/update/${id}`,{
             name,
             image,
             description,

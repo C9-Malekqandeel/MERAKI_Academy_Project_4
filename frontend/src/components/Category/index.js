@@ -24,7 +24,7 @@ const Category = () => {
 
 
     useEffect(()=>{
-        axios.get('http://localhost:5000/category').then((result)=>{
+        axios.get('https://swap-fmy1.onrender.com/category').then((result)=>{
             setCategoryList([...categoryList,...result.data.categories])
         }).catch((err)=>{
             console.log(err);
@@ -36,7 +36,7 @@ const Category = () => {
 
 
    /*  useEffect(()=>{
-        axios.get(`http://localhost:5000/category/${idCategory}`).then((res)=>{
+        axios.get(`https://swap-fmy1.onrender.com/category/${idCategory}`).then((res)=>{
             console.log(res,"List");
             setItemCategory(...itemCategory,...res.data)
             }).catch((err)=>{

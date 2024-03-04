@@ -25,7 +25,7 @@ function CreateItem({id}) {
 
 
     useEffect(()=>{
-        axios.get("http://localhost:5000/category").then((res)=>{
+        axios.get("https://swap-fmy1.onrender.com/category").then((res)=>{
             setCategories([...categories,...res.data.categories]);
             console.log(res.data.categories);
         }).catch((err)=>{
@@ -101,7 +101,7 @@ function CreateItem({id}) {
       </Form.Group>
 
       <Button variant="primary" onClick={()=>{
-        axios.post(`http://localhost:5000/items/create/${userId}`,{
+        axios.post(`https://swap-fmy1.onrender.com/items/create/${userId}`,{
             name,
             image,
             description,

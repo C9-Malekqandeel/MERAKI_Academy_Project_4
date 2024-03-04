@@ -168,7 +168,7 @@ const Register = () => {
       <a className="bn31"
         type="submit"
         onClick={() => {
-          axios.post("http://localhost:5000/users/register", {
+          axios.post("https://swap-fmy1.onrender.com/users/register", {
               userName,
               email,
               password,
